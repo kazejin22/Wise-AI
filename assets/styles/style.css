@@ -1,0 +1,237 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f7;
+  color: #1f2a40;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+  background-color: #0f172a;
+  color: #f9fafb;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  background-color: transparent;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Container layout di navbar */
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo di kiri, nav di kanan */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #7FB2F0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: #5A9CE0;
+}
+
+#darkToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* 🔥 Hero Section */
+.hero {
+  padding: 4rem 0;
+  background-color: #e9f1fc;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #1f2a40;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #3b3b3b;
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #7FB2F0;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #5A9CE0;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+
+/* 🧠 How It Works */
+.how-it-works {
+  background-color: #fefefe;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  margin-bottom: 2.5rem;
+  color: #1f2a40;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-align: center; /* ✅ Pastikan ini tengah */
+  width: 100%;
+}
+
+.steps {
+  display: flex;
+  justify-content: center; /* ✅ Tengahin semua card */
+  align-items: stretch;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.step {
+  flex: 1;
+  min-width: 260px;
+  max-width: 320px;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  text-align: center; /* ✅ Semua konten card di tengah */
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.step img {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem auto; /* ✅ Biar iconnya ke tengah */
+  display: block;
+}
+
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #5A9CE0;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.step .arrow {
+  font-size: 1.5rem;
+  color: #7FB2F0;
+  transition: transform 0.3s ease;
+}
+
+.step:hover .arrow {
+  transform: translateX(6px);
+}
+
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    max-width: 100%;
+  }
+}
