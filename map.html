@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Case Map - Web Wise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Web Wise AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz-deepfake.html" class="nav-link">Deepfake Quiz</a></li>
+                <li><a href="learning.html" class="nav-link">Learning Center</a></li>
+                <li><a href="map.html" class="nav-link active">Case Map</a></li>
+                <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Map Header -->
+    <section class="map-header">
+        <div class="container">
+            <h1 class="map-title">Global AI Case Map</h1>
+            <p class="map-subtitle">Explore real-world cases of AI misuse and deepfake incidents worldwide</p>
+            
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-globe"></i>
+                    All Cases
+                </button>
+                <button class="filter-btn" data-category="politics">
+                    <i class="fas fa-landmark"></i>
+                    Politics
+                </button>
+                <button class="filter-btn" data-category="hoax">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Hoax
+                </button>
+                <button class="filter-btn" data-category="financial">
+                    <i class="fas fa-dollar-sign"></i>
+                    Financial Crime
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="map-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCases">156</span>
+                    <span class="stat-label">Total Cases</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="countries">42</span>
+                    <span class="stat-label">Countries</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="yearRange">2018-2024</span>
+                    <span class="stat-label">Time Period</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Container -->
+    <section class="map-container">
+        <div class="container">
+            <div class="map-wrapper">
+                <div id="map"></div>
+                
+                <!-- Map Controls -->
+                <div class="map-controls">
+                    <div class="control-group">
+                        <button class="control-btn" id="zoomIn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="control-btn" id="zoomOut">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <button class="control-btn" id="resetMap">
+                            <i class="fas fa-home"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case List Toggle -->
+                <button class="case-list-toggle" id="caseListToggle">
+                    <i class="fas fa-list"></i>
+                    <span>Case List</span>
+                </button>
+
+                <!-- Case List Panel -->
+                <div class="case-list-panel" id="caseListPanel">
+                    <div class="case-list-header">
+                        <h3>Recent Cases</h3>
+                        <button class="close-btn" id="closeCaseList">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="case-list-content" id="caseListContent">
+                        <!-- Cases will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Details Modal -->
+    <div class="case-modal" id="caseModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Case Title</h2>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="case-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="modalLocation">Location</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="modalDate">Date</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span id="modalCategory">Category</span>
+                    </div>
+                </div>
+                
+                <div class="case-description">
+                    <h3>Case Summary</h3>
+                    <p id="modalDescription">Case description will appear here...</p>
+                </div>
+
+                <div class="case-details">
+                    <h3>Key Details</h3>
+                    <ul id="modalDetails">
+                        <!-- Details will be populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <div class="case-impact">
+                    <h3>Impact & Consequences</h3>
+                    <p id="modalImpact">Impact details will appear here...</p>
+                </div>
+
+                <div class="case-sources">
+                    <h3>Sources</h3>
+                    <div class="sources-list" id="modalSources">
+                        <!-- Sources will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="shareCase">
+                    <i class="fas fa-share"></i>
+                    Share Case
+                </button>
+                <button class="btn btn-primary" id="learnMore">
+                    <i class="fas fa-external-link-alt"></i>
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Case Statistics -->
+    <section class="case-statistics">
+        <div class="container">
+            <h2 class="section-title">Case Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Case Growth</h3>
+                        <p>AI misuse cases have increased by 300% since 2020</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Global Spread</h3>
+                        <p>Cases reported in 42 countries across 6 continents</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Detection Rate</h3>
+                        <p>85% of cases were detected within 24 hours</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Legal Action</h3>
+                        <p>67% of cases resulted in legal consequences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Web Wise AI</span>
+                    </div>
+                    <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="quiz-deepfake.html">Deepfake Quiz</a></li>
+                        <li><a href="learning.html">Learning Center</a></li>
+                        <li><a href="map.html">Case Map</a></li>
+                        <li><a href="deepware-api.html">Detection Test</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with the latest AI detection techniques and case studies.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Web Wise AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html> 

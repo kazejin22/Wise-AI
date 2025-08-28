@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Web Wise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/404.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Web Wise AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz-deepfake.html" class="nav-link">Deepfake Quiz</a></li>
+                <li><a href="learning.html" class="nav-link">Learning Center</a></li>
+                <li><a href="map.html" class="nav-link">Case Map</a></li>
+                <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <section class="error-container">
+        <div class="container">
+            <div class="error-content">
+                <!-- Animated 404 -->
+                <div class="error-number">
+                    <div class="digit" data-digit="4">4</div>
+                    <div class="digit" data-digit="0">0</div>
+                    <div class="digit" data-digit="4">4</div>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="error-message">
+                    <h1>Oops! Page Not Found</h1>
+                    <p>It looks like this page has been digitally manipulated or doesn't exist. Don't worry, even AI can make mistakes!</p>
+                </div>
+                
+                <!-- Search Section -->
+                <div class="search-section">
+                    <h2>Looking for something specific?</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search our website...">
+                        <button id="searchBtn" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quick Navigation -->
+                <div class="quick-nav">
+                    <h3>Popular Pages</h3>
+                    <div class="nav-grid">
+                        <a href="index.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Home</h4>
+                                <p>Back to the main page</p>
+                            </div>
+                        </a>
+                        
+                        <a href="quiz-deepfake.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Deepfake Quiz</h4>
+                                <p>Test your detection skills</p>
+                            </div>
+                        </a>
+                        
+                        <a href="learning.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Learning Center</h4>
+                                <p>Educational resources</p>
+                            </div>
+                        </a>
+                        
+                        <a href="map.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Case Map</h4>
+                                <p>AI misuse cases worldwide</p>
+                            </div>
+                        </a>
+                        
+                        <a href="deepware-api.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Detection Test</h4>
+                                <p>Test your content</p>
+                            </div>
+                        </a>
+                        
+                        <a href="contact.html" class="nav-card">
+                            <div class="nav-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="nav-content">
+                                <h4>Contact Us</h4>
+                                <p>Get in touch</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Help Section -->
+                <div class="help-section">
+                    <h3>Need Help?</h3>
+                    <p>If you're looking for something specific or found a broken link, let us know!</p>
+                    <div class="help-buttons">
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            Contact Support
+                        </a>
+                        <button class="btn btn-secondary" id="reportBtn">
+                            <i class="fas fa-bug"></i>
+                            Report Broken Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Elements Animation -->
+    <div class="floating-elements">
+        <div class="floating-icon" style="--delay: 0s; --position: 10%">
+            <i class="fas fa-eye"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 2s; --position: 20%">
+            <i class="fas fa-brain"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 4s; --position: 30%">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 6s; --position: 40%">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 8s; --position: 50%">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 10s; --position: 60%">
+            <i class="fas fa-code"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 12s; --position: 70%">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="floating-icon" style="--delay: 14s; --position: 80%">
+            <i class="fas fa-globe"></i>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Web Wise AI</span>
+                    </div>
+                    <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="quiz-deepfake.html">Deepfake Quiz</a></li>
+                        <li><a href="learning.html">Learning Center</a></li>
+                        <li><a href="map.html">Case Map</a></li>
+                        <li><a href="deepware-api.html">Detection Test</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with the latest AI detection techniques and case studies.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Web Wise AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Report Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report Broken Link</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="brokenUrl">Broken URL</label>
+                        <input type="url" id="brokenUrl" name="brokenUrl" value="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportEmail">Your Email</label>
+                        <input type="email" id="reportEmail" name="reportEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="reportMessage">Additional Details (Optional)</label>
+                        <textarea id="reportMessage" name="reportMessage" rows="3" placeholder="Tell us what you were looking for..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelReport">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/404.js"></script>
+</body>
+</html> 
