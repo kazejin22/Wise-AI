@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Center - Web Wise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/learning.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Web Wise AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz-deepfake.html" class="nav-link">Deepfake Quiz</a></li>
+                <li><a href="learning.html" class="nav-link active">Learning Center</a></li>
+                <li><a href="map.html" class="nav-link">Case Map</a></li>
+                <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Learning Header -->
+    <section class="learning-header">
+        <div class="container">
+            <h1 class="learning-title">Learning Center</h1>
+            <p class="learning-subtitle">Master AI detection through expert-curated educational content</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for topics, techniques, or keywords...">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-th"></i>
+                    All Topics
+                </button>
+                <button class="filter-btn" data-category="deepfake">
+                    <i class="fas fa-eye"></i>
+                    Deepfake Detection
+                </button>
+                <button class="filter-btn" data-category="ethics">
+                    <i class="fas fa-balance-scale"></i>
+                    AI Ethics
+                </button>
+                <button class="filter-btn" data-category="cybercrime">
+                    <i class="fas fa-shield-alt"></i>
+                    Cybercrime
+                </button>
+                <button class="filter-btn" data-category="law">
+                    <i class="fas fa-gavel"></i>
+                    AI in Law
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Content -->
+    <section class="learning-content">
+        <div class="container">
+            <!-- Featured Video -->
+            <div class="featured-video">
+                <h2>Featured Content</h2>
+                <div class="featured-card">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <span class="category deepfake">Deepfake Detection</span>
+                            <span class="duration"><i class="fas fa-clock"></i> 15 min</span>
+                            <span class="level"><i class="fas fa-star"></i> Beginner</span>
+                        </div>
+                        <h3>How to Spot Deepfakes: A Complete Guide</h3>
+                        <p>Learn the fundamental techniques used by experts to identify AI-generated content in videos and images. This comprehensive guide covers everything from facial analysis to audio detection.</p>
+                        <div class="video-stats">
+                            <span><i class="fas fa-eye"></i> 45K views</span>
+                            <span><i class="fas fa-thumbs-up"></i> 2.3K likes</span>
+                            <span><i class="fas fa-calendar"></i> 2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-grid" id="videoGrid">
+                <!-- Video cards will be populated by JavaScript -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i>
+                    Load More Videos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="learning-paths">
+        <div class="container">
+            <h2 class="section-title">Learning Paths</h2>
+            <p class="section-subtitle">Follow structured learning paths to master AI detection</p>
+            
+            <div class="paths-grid">
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Beginner Path</h3>
+                    <p>Start your journey with fundamental concepts and basic detection techniques.</p>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0/8 completed</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Start Learning</a>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Intermediate Path</h3>
+                    <p>Advance your skills with advanced detection methods and real-world case studies.</p>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <span class="progress-text">2/8 completed</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Continue Learning</a>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Expert Path</h3>
+                    <p>Master advanced techniques and become an AI detection specialist.</p>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0/10 completed</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Start Expert Path</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources">
+        <div class="container">
+            <h2 class="section-title">Additional Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Research Papers</h3>
+                    <p>Access the latest academic research on AI detection and deepfake technology.</p>
+                    <a href="#" class="resource-link">Browse Papers <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Detection Tools</h3>
+                    <p>Explore various tools and software used by professionals for AI detection.</p>
+                    <a href="#" class="resource-link">View Tools <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Forum</h3>
+                    <p>Connect with other learners and experts in our community discussion forum.</p>
+                    <a href="#" class="resource-link">Join Forum <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certification</h3>
+                    <p>Earn certificates to validate your AI detection skills and knowledge.</p>
+                    <a href="#" class="resource-link">Get Certified <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Web Wise AI</span>
+                    </div>
+                    <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="quiz-deepfake.html">Deepfake Quiz</a></li>
+                        <li><a href="learning.html">Learning Center</a></li>
+                        <li><a href="map.html">Case Map</a></li>
+                        <li><a href="deepware-api.html">Detection Test</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with the latest AI detection techniques and case studies.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Web Wise AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/learning.js"></script>
+</body>
+</html> 

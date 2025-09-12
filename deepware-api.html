@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Detection Test - Web Wise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/deepware.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Web Wise AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz-deepfake.html" class="nav-link">Deepfake Quiz</a></li>
+                <li><a href="learning.html" class="nav-link">Learning Center</a></li>
+                <li><a href="map.html" class="nav-link">Case Map</a></li>
+                <li><a href="deepware-api.html" class="nav-link active">Detection Test</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Detection Header -->
+    <section class="detection-header">
+        <div class="container">
+            <h1 class="detection-title">AI Detection Test</h1>
+            <p class="detection-subtitle">Test your content using advanced AI detection technology</p>
+            
+            <!-- Detection Stats -->
+            <div class="detection-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTests">1,247</span>
+                    <span class="stat-label">Tests Performed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="accuracy">95.2%</span>
+                    <span class="stat-label">Detection Accuracy</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="avgTime">2.3s</span>
+                    <span class="stat-label">Average Time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detection Container -->
+    <section class="detection-container">
+        <div class="container">
+            <div class="detection-wrapper">
+                <!-- Upload Section -->
+                <div class="upload-section" id="uploadSection">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Upload Your Content</h3>
+                            <p>Drag and drop your image or video file here, or click to browse</p>
+                            <div class="file-types">
+                                <span class="file-type">Images: JPG, PNG, GIF</span>
+                                <span class="file-type">Videos: MP4, MOV, AVI</span>
+                                <span class="file-type">Audio: MP3, WAV, M4A</span>
+                            </div>
+                            <button class="btn btn-primary" id="browseBtn">
+                                <i class="fas fa-folder-open"></i>
+                                Browse Files
+                            </button>
+                            <input type="file" id="fileInput" accept="image/*,video/*,audio/*" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <!-- File Info -->
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <div class="file-preview">
+                            <img id="filePreview" src="" alt="File preview">
+                            <video id="videoPreview" controls style="display: none;">
+                                <source src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="file-details">
+                            <h4 id="fileName">filename.jpg</h4>
+                            <p id="fileSize">2.5 MB</p>
+                            <p id="fileType">Image • JPEG</p>
+                        </div>
+                        <div class="file-actions">
+                            <button class="btn btn-secondary" id="removeFile">
+                                <i class="fas fa-trash"></i>
+                                Remove
+                            </button>
+                            <button class="btn btn-primary" id="analyzeBtn">
+                                <i class="fas fa-search"></i>
+                                Analyze Content
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Section -->
+                <div class="analysis-section" id="analysisSection" style="display: none;">
+                    <div class="analysis-header">
+                        <h3>Analysis in Progress</h3>
+                        <p>Our AI is analyzing your content for signs of manipulation...</p>
+                    </div>
+                    
+                    <div class="analysis-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="step active">
+                                <i class="fas fa-upload"></i>
+                                <span>Uploading</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-cog"></i>
+                                <span>Processing</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-search"></i>
+                                <span>Analyzing</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Results</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <div class="results-header">
+                        <h3>Analysis Complete</h3>
+                        <p>Here are the results of your content analysis</p>
+                    </div>
+                    
+                    <div class="results-content">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <div class="result-icon" id="resultIcon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="result-title">
+                                    <h4 id="resultTitle">Content Analysis</h4>
+                                    <p id="resultSubtitle">Your content appears to be authentic</p>
+                                </div>
+                            </div>
+                            
+                            <div class="result-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Authenticity Score</span>
+                                    <span class="metric-value" id="authenticityScore">87%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Manipulation Risk</span>
+                                    <span class="metric-value" id="manipulationRisk">Low</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Confidence Level</span>
+                                    <span class="metric-value" id="confidenceLevel">High</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-details">
+                                <h5>Detailed Analysis</h5>
+                                <div class="detail-item">
+                                    <span class="detail-label">Facial Analysis:</span>
+                                    <span class="detail-value" id="facialAnalysis">No signs of manipulation detected</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Audio Analysis:</span>
+                                    <span class="detail-value" id="audioAnalysis">Natural audio patterns detected</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Metadata Analysis:</span>
+                                    <span class="detail-value" id="metadataAnalysis">Consistent with original source</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Compression Analysis:</span>
+                                    <span class="detail-value" id="compressionAnalysis">Standard compression detected</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-recommendations">
+                                <h5>Recommendations</h5>
+                                <ul id="recommendationsList">
+                                    <li>This content appears to be authentic</li>
+                                    <li>No immediate concerns detected</li>
+                                    <li>Consider additional verification for critical use cases</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-secondary" id="newTestBtn">
+                            <i class="fas fa-plus"></i>
+                            New Test
+                        </button>
+                        <button class="btn btn-primary" id="downloadReportBtn">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="btn btn-outline" id="shareResultsBtn">
+                            <i class="fas fa-share"></i>
+                            Share Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Our Detection Works</h2>
+            <p class="section-subtitle">Advanced AI technology to identify manipulated content</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload Content</h3>
+                    <p>Upload your image or video file. We support most common formats and file sizes up to 100MB.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>AI Processing</h3>
+                    <p>Our advanced AI analyzes multiple aspects including facial features, audio patterns, and metadata.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Detailed Analysis</h3>
+                    <p>Get comprehensive results with authenticity scores, risk assessments, and detailed breakdowns.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Results</h3>
+                    <p>Your content is processed securely and deleted after analysis. Results are private and confidential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detection Features -->
+    <section class="detection-features">
+        <div class="container">
+            <h2 class="section-title">Detection Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Facial Analysis</h3>
+                    <p>Detects unnatural facial features, inconsistent lighting, and artificial expressions in deepfake videos and images.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3>Audio Detection</h3>
+                    <p>Analyzes audio patterns to identify synthetic speech, inconsistent voice characteristics, and artificial audio manipulation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Metadata Analysis</h3>
+                    <p>Examines file metadata, compression patterns, and digital signatures to identify signs of manipulation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Pattern Recognition</h3>
+                    <p>Uses machine learning algorithms to identify patterns and anomalies that indicate AI-generated content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Web Wise AI</span>
+                    </div>
+                    <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="quiz-deepfake.html">Deepfake Quiz</a></li>
+                        <li><a href="learning.html">Learning Center</a></li>
+                        <li><a href="map.html">Case Map</a></li>
+                        <li><a href="deepware-api.html">Detection Test</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with the latest AI detection techniques and case studies.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Web Wise AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/deepware.js"></script>
+</body>
+</html> 
