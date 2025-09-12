@@ -2,6 +2,16 @@
 let currentFile = null;
 let analysisInProgress = false;
 
+// API Configuration
+const API_TOKEN = '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';
+const API_ENDPOINTS = {
+    image: 'https://api-inference.huggingface.co/models/facebook/detr-resnet-50',
+    video: 'https://api-inference.huggingface.co/models/facebook/detr-resnet-50',
+    audio: 'https://api-inference.huggingface.co/models/facebook/wav2vec2-base',
+    deepfake: 'https://api-inference.huggingface.co/models/facebook/detr-resnet-50',
+    manipulation: 'https://api-inference.huggingface.co/models/facebook/detr-resnet-50'
+};
+
 // DOM Elements
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
@@ -100,9 +110,10 @@ function processFile(file) {
     // Validate file type
     const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     const validVideoTypes = ['video/mp4', 'video/mov', 'video/avi', 'video/webm'];
+    const validAudioTypes = ['audio/mp3', 'audio/wav', 'audio/m4a', 'audio/aac'];
     
-    if (!validImageTypes.includes(file.type) && !validVideoTypes.includes(file.type)) {
-        alert('Please select a valid image or video file.');
+    if (!validImageTypes.includes(file.type) && !validVideoTypes.includes(file.type) && !validAudioTypes.includes(file.type)) {
+        alert('Please select a valid image, video, or audio file.');
         return;
     }
     
@@ -138,6 +149,10 @@ function displayFileInfo(file) {
             videoPreview.src = e.target.result;
             videoPreview.style.display = 'block';
             filePreview.style.display = 'none';
+        } else if (file.type.startsWith('audio/')) {
+            // Hide both image and video preview for audio
+            filePreview.style.display = 'none';
+            videoPreview.style.display = 'none';
         }
     };
     reader.readAsDataURL(file);
@@ -162,7 +177,11 @@ function getFileTypeDisplay(type) {
         'video/mp4': 'Video • MP4',
         'video/mov': 'Video • MOV',
         'video/avi': 'Video • AVI',
-        'video/webm': 'Video • WebM'
+        'video/webm': 'Video • WebM',
+        'audio/mp3': 'Audio • MP3',
+        'audio/wav': 'Audio • WAV',
+        'audio/m4a': 'Audio • M4A',
+        'audio/aac': 'Audio • AAC'
     };
     return typeMap[type] || type;
 }
@@ -174,10 +193,12 @@ function removeCurrentFile() {
     fileInput.value = '';
     filePreview.src = '';
     videoPreview.src = '';
+    filePreview.style.display = 'none';
+    videoPreview.style.display = 'none';
 }
 
 // Start analysis
-function startAnalysis() {
+async function startAnalysis() {
     if (!currentFile || analysisInProgress) return;
     
     analysisInProgress = true;
@@ -188,6 +209,17 @@ function startAnalysis() {
     
     // Start progress animation
     startProgressAnimation();
+    
+    try {
+        // Perform actual API analysis
+        const results = await performAPIAnalysis(currentFile);
+        
+        // Show results with real data
+        showResults(results);
+    } catch (error) {
+        console.error('Analysis failed:', error);
+        showErrorResults(error.message);
+    }
 }
 
 // Start progress animation
@@ -220,12 +252,17 @@ function startProgressAnimation() {
 }
 
 // Show results
-function showResults() {
+function showResults(results) {
     analysisSection.style.display = 'none';
     resultsSection.style.display = 'block';
     
-    // Generate mock results based on file type
-    generateMockResults();
+    if (results) {
+        // Update result display with real data
+        updateResultDisplay(results);
+    } else {
+        // Generate mock results based on file type
+        generateMockResults();
+    }
     
     analysisInProgress = false;
 }
@@ -234,6 +271,7 @@ function showResults() {
 function generateMockResults() {
     const isImage = currentFile.type.startsWith('image/');
     const isVideo = currentFile.type.startsWith('video/');
+    const isAudio = currentFile.type.startsWith('audio/');
     
     // Random authenticity score (70-95% for demo)
     const authenticity = Math.floor(Math.random() * 25) + 70;
@@ -282,17 +320,17 @@ function generateMockResults() {
     confidenceLevel.textContent = confidence;
     
     // Update detailed analysis
-    updateDetailedAnalysis(isImage, isVideo, authenticity);
+    updateDetailedAnalysis(isImage, isVideo, isAudio, authenticity);
     
     // Update recommendations
     updateRecommendations(resultType, authenticity);
 }
 
 // Update detailed analysis
-function updateDetailedAnalysis(isImage, isVideo, authenticity) {
+function updateDetailedAnalysis(isImage, isVideo, isAudio, authenticity) {
     const analyses = {
         facial: isImage || isVideo ? getFacialAnalysis(authenticity) : 'Not applicable',
-        audio: isVideo ? getAudioAnalysis(authenticity) : 'Not applicable',
+        audio: isVideo || isAudio ? getAudioAnalysis(authenticity) : 'Not applicable',
         metadata: getMetadataAnalysis(authenticity),
         compression: getCompressionAnalysis(authenticity)
     };

@@ -1,156 +1,380 @@
-// Quiz Data
-const quizData = [
+// Quiz Data - A total of 15 questions
+const fullQuizData = [
     {
         id: 1,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/4F46E5/FFFFFF?text=Real+Image+1',
-        answer: 'real',
-        explanation: 'This image shows natural facial features, consistent lighting, and realistic proportions. The background details are coherent and there are no obvious artifacts.',
-        tips: [
-            'Natural facial expressions and movements',
-            'Consistent lighting across the image',
-            'Realistic proportions and features',
-            'Coherent background details'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2019/07/04/10/43/face-4316040_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'Getty Images',
-        date: '2024'
+        correctAnswer: 'deepfake',
+        explanation: 'Gambar ini memiliki tekstur kulit yang terlalu mulus dan tidak realistis, serta simetri wajah yang terlalu sempurna. Ini adalah tanda umum dari konten yang dihasilkan AI.',
+        tips: ['Kulit terlalu halus atau seperti plastik', 'Simetri wajah yang tidak wajar', 'Rambut dan telinga yang kabur atau aneh'],
+        source: 'AI Generated',
+        date: '2025'
     },
     {
         id: 2,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/EF4444/FFFFFF?text=Deepfake+Image+1',
-        answer: 'deepfake',
-        explanation: 'This image shows subtle inconsistencies in facial features, particularly around the eyes and mouth. The lighting appears artificial and there are minor artifacts.',
-        tips: [
-            'Look for unnatural facial symmetry',
-            'Check for inconsistent lighting',
-            'Examine eye reflections carefully',
-            'Look for artifacts around edges'
+        type: 'media',
+        mediaType: 'video',
+        content: 'https://assets.mixkit.co/videos/preview/mixkit-womans-face-close-up-165-large.mp4',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'AI Generated',
-        date: '2024'
+        correctAnswer: 'real',
+        explanation: 'Video ini menunjukkan gerakan bibir dan ekspresi wajah yang sangat natural. Sinkronisasi audio-visualnya sempurna, dan tidak ada glitch visual yang terlihat.',
+        tips: ['Sinkronisasi audio-visual yang sempurna', 'Ekspresi wajah yang alami', 'Tidak ada distorsi atau glitch di wajah'],
+        source: 'Public Domain',
+        date: '2025'
     },
     {
         id: 3,
-        type: 'video',
-        content: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
-        answer: 'real',
-        explanation: 'This video shows natural facial movements, consistent audio synchronization, and realistic background motion. The person\'s expressions change naturally.',
-        tips: [
-            'Natural facial movements and expressions',
-            'Consistent audio-video synchronization',
-            'Realistic background motion',
-            'Natural blinking and eye movements'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2019/08/21/11/47/human-4420800_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'Reuters',
-        date: '2024'
+        correctAnswer: 'deepfake',
+        explanation: 'Perhatikan bagaimana pencahayaan pada wajah tidak konsisten dengan sumber cahaya di latar belakang. Ini adalah artefak pencahayaan yang sering muncul pada deepfake.',
+        tips: ['Bayangan yang tidak wajar', 'Cahaya yang tidak sesuai dengan sumbernya', 'Inkonsistensi warna dan temperatur cahaya'],
+        source: 'AI Generated',
+        date: '2025'
     },
     {
         id: 4,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/10B981/FFFFFF?text=Real+Image+2',
-        answer: 'real',
-        explanation: 'This image displays authentic human features with natural skin texture, realistic hair, and proper anatomical proportions. The lighting is consistent.',
-        tips: [
-            'Natural skin texture and pores',
-            'Realistic hair and hairline',
-            'Proper anatomical proportions',
-            'Consistent lighting and shadows'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2020/06/10/01/29/man-5280327_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
+        correctAnswer: 'real',
+        explanation: "Mata pada gambar ini berkedip dengan pola yang tidak teratur dan alami. Selain itu, ada pantulan cahaya yang realistis di dalam mata.",
+        tips: ["Pola kedipan mata yang tidak teratur", "Pantulan cahaya yang realistis", "Tidak ada 'stare' atau tatapan kaku"],
         source: 'Associated Press',
-        date: '2024'
+        date: '2025'
     },
     {
         id: 5,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/F59E0B/FFFFFF?text=Deepfake+Image+2',
-        answer: 'deepfake',
-        explanation: 'This image has overly perfect facial features, unnaturally smooth skin, and inconsistent lighting. The background shows signs of AI generation.',
-        tips: [
-            'Overly perfect or symmetrical features',
-            'Unnaturally smooth skin texture',
-            'Inconsistent lighting patterns',
-            'Artificial-looking background elements'
+        type: 'media',
+        mediaType: 'video',
+        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-man-with-a-blue-and-red-background-1563-large.mp4',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
+        correctAnswer: 'deepfake',
+        explanation: "Video ini menunjukkan ekspresi wajah yang kaku atau robotik. Gerakan wajah tidak mengalir secara natural dan terlihat seperti 'topeng'.",
+        tips: ['Ekspresi wajah yang kaku dan tidak alami', 'Kurangnya gerakan mikro pada wajah', 'Perubahan ekspresi yang tiba-tiba'],
         source: 'AI Generated',
-        date: '2024'
+        date: '2025'
     },
     {
         id: 6,
-        type: 'video',
-        content: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
-        answer: 'deepfake',
-        explanation: 'This video shows unnatural facial movements, particularly around the mouth and eyes. The audio doesn\'t perfectly sync with the lip movements.',
-        tips: [
-            'Unnatural facial movements',
-            'Poor audio-video synchronization',
-            'Artificial-looking expressions',
-            'Inconsistent lighting throughout'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2021/04/10/22/08/ai-6168581_1280.png',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
+        correctAnswer: 'deepfake',
+        explanation: 'Jari tangan dan anggota tubuh yang aneh (jumlah jari tidak normal, jari terlalu panjang) adalah salah satu ciri deepfake yang paling sering gagal direplikasi.',
+        tips: ['Jumlah jari tidak normal', 'Bentuk jari aneh atau distorsi', 'Proporsi tubuh yang tidak realistis'],
         source: 'AI Generated',
-        date: '2024'
+        date: '2025'
     },
     {
         id: 7,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Real+Image+3',
-        answer: 'real',
-        explanation: 'This image shows genuine human characteristics with natural imperfections, realistic shadows, and authentic environmental details.',
-        tips: [
-            'Natural imperfections and blemishes',
-            'Realistic shadows and highlights',
-            'Authentic environmental details',
-            'Consistent color temperature'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2016/11/14/19/27/people-1824107_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'BBC News',
-        date: '2024'
+        correctAnswer: 'real',
+        explanation: 'Latar belakang pada foto ini tampak koheren dan logis. Tidak ada distorsi atau artefak yang membuat latar belakang terlihat seperti lukisan.',
+        tips: ['Latar belakang yang logis dan jelas', 'Tidak ada elemen yang kabur atau aneh', 'Interaksi subjek dengan lingkungan yang realistis'],
+        source: 'Getty Images',
+        date: '2025'
     },
     {
         id: 8,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/EC4899/FFFFFF?text=Deepfake+Image+3',
-        answer: 'deepfake',
-        explanation: 'This image displays artificial-looking features with unnaturally perfect symmetry and inconsistent lighting patterns that suggest AI generation.',
-        tips: [
-            'Unnaturally perfect symmetry',
-            'Inconsistent lighting patterns',
-            'Artificial-looking features',
-            'Suspicious background elements'
+        type: 'media',
+        mediaType: 'video',
+        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-smiling-girl-1809-large.mp4',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'AI Generated',
-        date: '2024'
+        correctAnswer: 'real',
+        explanation: 'Video ini menunjukkan interaksi yang natural antara subjek dan lingkungan. Gerakan dan bayangan yang dihasilkan sangat konsisten.',
+        tips: ['Gerakan subjek yang halus dan natural', 'Bayangan yang konsisten', 'Interaksi dengan objek lain yang logis'],
+        source: 'Public Domain',
+        date: '2025'
     },
     {
         id: 9,
-        type: 'video',
-        content: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
-        answer: 'real',
-        explanation: 'This video demonstrates natural human behavior with realistic movements, authentic expressions, and consistent environmental interaction.',
-        tips: [
-            'Natural human behavior patterns',
-            'Realistic movement and gestures',
-            'Authentic emotional expressions',
-            'Consistent environmental interaction'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2021/02/08/11/04/woman-5994270_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
-        source: 'CNN',
-        date: '2024'
+        correctAnswer: 'deepfake',
+        explanation: 'Perhatikan bayangan pada wajah yang tidak sesuai dengan arah sumber cahaya utama. Ini adalah ketidakcocokan yang sering terjadi pada konten deepfake.',
+        tips: ['Arah bayangan yang tidak logis', 'Bayangan terlalu tajam atau terlalu halus', 'Adanya bayangan yang seharusnya tidak ada'],
+        source: 'AI Generated',
+        date: '2025'
     },
     {
         id: 10,
-        type: 'image',
-        content: 'https://via.placeholder.com/600x400/06B6D4/FFFFFF?text=Deepfake+Image+4',
-        answer: 'deepfake',
-        explanation: 'This image shows signs of AI generation with artificial-looking features, inconsistent lighting, and unnatural background elements.',
-        tips: [
-            'Artificial-looking facial features',
-            'Inconsistent lighting and shadows',
-            'Unnatural background elements',
-            'Suspicious image artifacts'
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2022/10/25/11/48/ai-generated-7546059_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
         ],
+        correctAnswer: 'deepfake',
+        explanation: 'Gigi pada foto ini terlihat tidak beraturan, berdistorsi, atau memiliki bentuk aneh. Algoritma AI sering kesulitan mereplikasi detail kecil seperti gigi.',
+        tips: ['Gigi yang bentuknya tidak normal', 'Gigi yang terlalu putih atau transparan', 'Jumlah gigi yang aneh'],
         source: 'AI Generated',
-        date: '2024'
+        date: '2025'
+    },
+    {
+        id: 11,
+        type: 'media',
+        mediaType: 'video',
+        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-business-man-in-a-suit-walking-down-the-stairs-33512-large.mp4',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
+        ],
+        correctAnswer: 'real',
+        explanation: 'Video ini adalah cuplikan berita asli. Gerakan wajah, audio, dan pencahayaan sangat sinkron dan natural, tanpa adanya artefak digital.',
+        tips: ['Gerakan wajah yang mengalir', 'Sinkronisasi bibir dan suara yang akurat', 'Kualitas video yang konsisten'],
+        source: 'Public Domain',
+        date: '2025'
+    },
+    {
+        id: 12,
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2023/11/24/00/36/ai-generated-8399587_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
+        ],
+        correctAnswer: 'deepfake',
+        explanation: "Terdapat distorsi atau 'glitch' di pinggir wajah, terutama di bagian rambut dan leher. Ini terjadi karena algoritma kesulitan 'menjahit' wajah palsu ke tubuh yang asli.",
+        tips: ['Garis pinggir wajah yang tidak jelas', 'Distorsi di sekitar rambut atau leher', 'Perbedaan warna yang aneh'],
+        source: 'AI Generated',
+        date: '2025'
+    },
+    {
+        id: 13,
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2023/06/15/22/01/ai-generated-8065555_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
+        ],
+        correctAnswer: 'deepfake',
+        explanation: 'Latar belakang pada gambar ini terlihat kabur dan memiliki pola-pola aneh yang tidak logis. Ini adalah tanda bahwa latar belakang juga dihasilkan oleh AI.',
+        tips: ['Pola yang tidak beraturan pada latar belakang', 'Distorsi pada objek yang jauh', 'Latar belakang terlihat seperti lukisan'],
+        source: 'AI Generated',
+        date: '2025'
+    },
+    {
+        id: 14,
+        type: 'media',
+        mediaType: 'video',
+        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-woman-talking-on-the-phone-in-a-cafe-35496-large.mp4',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
+        ],
+        correctAnswer: 'real',
+        explanation: 'Kualitas video ini terlihat alami dengan pencahayaan yang konsisten dan gerakan tubuh yang mulus. Tidak ada tanda-tanda manipulasi digital.',
+        tips: ['Pergerakan yang halus dan natural', 'Pencahayaan yang konsisten', 'Tidak ada perubahan kualitas yang tiba-tiba'],
+        source: 'Public Domain',
+        date: '2025'
+    },
+    {
+        id: 15,
+        type: 'media',
+        mediaType: 'image',
+        content: 'https://cdn.pixabay.com/photo/2017/08/07/19/23/people-2607872_1280.jpg',
+        questionText: 'Is this content real or AI-generated?',
+        answerOptions: [
+            { text: 'Real', value: 'real' },
+            { text: 'Deepfake', value: 'deepfake' }
+        ],
+        correctAnswer: 'real',
+        explanation: 'Gambar ini adalah asli karena memiliki ketidaksempurnaan yang alami seperti pori-pori kulit, kerutan halus, dan tekstur rambut yang realistis, yang sulit direplikasi oleh AI.',
+        tips: ['Adanya ketidaksempurnaan alami', 'Tekstur kulit yang realistis', 'Detail yang jelas pada rambut'],
+        source: 'Reuters',
+        date: '2025'
+    },
+    // New Questions added here
+    {
+        id: 16,
+        type: 'general',
+        questionText: 'Apa itu Machine Learning (ML)?',
+        answerOptions: [
+            { text: 'A. Kemampuan komputer untuk membuat keputusan sendiri', value: 'A' },
+            { text: 'B. Algoritma yang memungkinkan komputer belajar dari data', value: 'B' },
+            { text: 'C. Sub-bidang AI yang fokus pada robotika', value: 'C' },
+            { text: 'D. Proses menghasilkan gambar dan video palsu', value: 'D' }
+        ],
+        correctAnswer: 'B',
+        explanation: 'Machine Learning adalah sub-bidang AI yang berfokus pada pengembangan algoritma yang dapat "belajar" dan meningkatkan kinerjanya seiring waktu dengan mengeksposnya pada data.'
+    },
+    {
+        id: 17,
+        type: 'general',
+        questionText: 'Teknologi AI apa yang digunakan oleh asisten virtual seperti Siri dan Google Assistant?',
+        answerOptions: [
+            { text: 'A. Computer Vision', value: 'A' },
+            { text: 'B. Natural Language Processing (NLP)', value: 'B' },
+            { text: 'C. Expert Systems', value: 'C' },
+            { text: 'D. Reinforcement Learning', value: 'D' }
+        ],
+        correctAnswer: 'B',
+        explanation: 'Natural Language Processing (NLP) adalah cabang AI yang memungkinkan komputer untuk memahami, menginterpretasi, dan menghasilkan bahasa manusia.'
+    },
+    {
+        id: 18,
+        type: 'general',
+        questionText: 'Siapa yang dianggap sebagai "bapak" dari kecerdasan buatan?',
+        answerOptions: [
+            { text: 'A. Bill Gates', value: 'A' },
+            { text: 'B. Alan Turing', value: 'B' },
+            { text: 'C. John McCarthy', value: 'C' },
+            { text: 'D. Stephen Hawking', value: 'D' }
+        ],
+        correctAnswer: 'C',
+        explanation: 'John McCarthy adalah seorang ilmuwan komputer Amerika yang menciptakan istilah "kecerdasan buatan" pada tahun 1956 dan merupakan salah satu pendiri bidang tersebut.'
+    },
+    {
+        id: 19,
+        type: 'general',
+        questionText: 'Apa perbedaan utama antara AI Kuat (Strong AI) dan AI Lemah (Weak AI)?',
+        answerOptions: [
+            { text: 'A. AI Kuat memiliki kesadaran, AI Lemah tidak', value: 'A' },
+            { text: 'B. AI Kuat hanya bisa memecahkan satu masalah, AI Lemah banyak masalah', value: 'B' },
+            { text: 'C. AI Kuat menggunakan internet, AI Lemah tidak', value: 'C' },
+            { text: 'D. AI Kuat lebih cepat, AI Lemah lebih lambat', value: 'D' }
+        ],
+        correctAnswer: 'A',
+        explanation: 'AI Kuat (juga dikenal sebagai AGI atau Artificial General Intelligence) adalah AI teoretis yang memiliki kesadaran dan kemampuan kognitif layaknya manusia, sedangkan AI Lemah (ANI) adalah AI yang dirancang untuk satu tugas spesifik.'
+    },
+    {
+        id: 20,
+        type: 'general',
+        questionText: 'Apa nama jaringan saraf tiruan yang meniru cara kerja otak manusia?',
+        answerOptions: [
+            { text: 'A. Neural Networks', value: 'A' },
+            { text: 'B. Data Mining', value: 'B' },
+            { text: 'C. Cloud Computing', value: 'C' },
+            { text: 'D. Quantum Computing', value: 'D' }
+        ],
+        correctAnswer: 'A',
+        explanation: 'Neural Networks (Jaringan Saraf Tiruan) adalah model komputasi yang terinspirasi oleh struktur otak manusia, digunakan untuk mengenali pola dan memecahkan masalah kompleks.'
+    },
+    {
+        id: 21,
+        type: 'general',
+        questionText: 'Dalam Deep Learning, apa kepanjangan dari CNN?',
+        answerOptions: [
+            { text: 'A. Creative Neural Network', value: 'A' },
+            { text: 'B. Convolutional Neural Network', value: 'B' },
+            { text: 'C. Computerized Network Node', value: 'C' },
+            { text: 'D. Comprehensive Neural Navigation', value: 'D' }
+        ],
+        correctAnswer: 'B',
+        explanation: 'Convolutional Neural Network (CNN) adalah jenis Neural Network yang sangat efektif untuk tugas-tugas yang berkaitan dengan penglihatan komputer (Computer Vision), seperti pengenalan gambar.'
+    },
+    {
+        id: 22,
+        type: 'general',
+        questionText: 'Apa tujuan utama dari algoritma Reinforcement Learning?',
+        answerOptions: [
+            { text: 'A. Mengklasifikasikan data', value: 'A' },
+            { text: 'B. Memprediksi hasil di masa depan', value: 'B' },
+            { text: 'C. Mencari jalur terpendek', value: 'C' },
+            { text: 'D. Belajar dari interaksi dengan lingkungan melalui reward dan penalty', value: 'D' }
+        ],
+        correctAnswer: 'D',
+        explanation: 'Reinforcement Learning adalah cabang AI di mana sebuah agen belajar untuk membuat keputusan yang optimal dengan berinteraksi dengan lingkungannya dan menerima umpan balik berupa reward atau penalty.'
+    },
+    {
+        id: 23,
+        type: 'general',
+        questionText: 'Apa yang dimaksud dengan Big Data dalam konteks AI?',
+        answerOptions: [
+            { text: 'A. Basis data yang sangat besar', value: 'A' },
+            { text: 'B. Data yang kompleks dan bervolume tinggi yang sulit diproses oleh perangkat lunak tradisional', value: 'B' },
+            { text: 'C. Data yang digunakan untuk melatih model AI', value: 'C' },
+            { text: 'D. Kumpulan data pribadi', value: 'D' }
+        ],
+        correctAnswer: 'B',
+        explanation: 'Big Data mengacu pada volume data yang sangat besar dan kompleks yang tidak dapat dikelola atau diproses secara efektif menggunakan alat pemrosesan data tradisional.'
+    },
+    {
+        id: 24,
+        type: 'general',
+        questionText: 'Contoh nyata dari "Computer Vision" adalah...',
+        answerOptions: [
+            { text: 'A. Deteksi spam di email', value: 'A' },
+            { text: 'B. Rekomendasi film di Netflix', value: 'B' },
+            { text: 'C. Pengenalan wajah di smartphone', value: 'C' },
+            { text: 'D. Asisten suara di mobil', value: 'D' }
+        ],
+        correctAnswer: 'C',
+        explanation: 'Computer Vision adalah bidang AI yang memungkinkan komputer untuk "melihat" dan menginterpretasikan informasi visual dari gambar dan video, seperti pengenalan wajah.'
+    },
+    {
+        id: 25,
+        type: 'general',
+        questionText: 'Teknologi apa yang memungkinkan model AI seperti ChatGPT untuk menghasilkan teks yang koheren?',
+        answerOptions: [
+            { text: 'A. Generative Adversarial Networks (GANs)', value: 'A' },
+            { text: 'B. Natural Language Understanding (NLU)', value: 'B' },
+            { text: 'C. Large Language Models (LLMs)', value: 'C' },
+            { text: 'D. Computer Vision', value: 'D' }
+        ],
+        correctAnswer: 'C',
+        explanation: 'Large Language Models (LLMs) adalah model AI canggih yang dilatih dengan data teks dalam jumlah besar untuk memahami dan menghasilkan bahasa manusia.'
     }
 ];
+
+let quizData;
+const totalQuizQuestions = 10;
 
 // Quiz State
 let currentQuestionIndex = 0;
@@ -163,13 +387,16 @@ const startScreen = document.getElementById('startScreen');
 const questionScreen = document.getElementById('questionScreen');
 const feedbackScreen = document.getElementById('feedbackScreen');
 const resultsScreen = document.getElementById('resultsScreen');
+const reviewScreen = document.getElementById('reviewScreen');
+const screens = document.querySelectorAll('.quiz-screen');
 
 const startQuizBtn = document.getElementById('startQuiz');
-const answerBtns = document.querySelectorAll('.answer-btn');
+const answerButtonsContainer = document.querySelector('.answer-buttons-container');
 const skipQuestionBtn = document.getElementById('skipQuestion');
 const nextQuestionBtn = document.getElementById('nextQuestion');
-const retakeQuizBtn = document.getElementById('retakeQuiz');
-const viewAnswersBtn = document.getElementById('viewAnswers');
+const retakeQuizBtn = document.getElementById('retakeQuizBtn'); // Updated ID
+const viewAnswersBtn = document.getElementById('viewAnswersBtn');
+const backToResultsBtn = document.getElementById('backToResultsBtn');
 
 // Stats Elements
 const currentQuestionEl = document.getElementById('currentQuestion');
@@ -178,10 +405,12 @@ const scoreEl = document.getElementById('score');
 const progressFill = document.getElementById('progressFill');
 
 // Content Elements
+const questionTextEl = document.getElementById('questionText');
 const contentImage = document.getElementById('contentImage');
 const contentVideo = document.getElementById('contentVideo');
 const contentSource = document.getElementById('contentSource');
 const contentDate = document.getElementById('contentDate');
+const mediaContainer = document.querySelector('.content-container');
 
 // Feedback Elements
 const feedbackIcon = document.getElementById('feedbackIcon');
@@ -197,119 +426,159 @@ const correctAnswersEl = document.getElementById('correctAnswers');
 const incorrectAnswersEl = document.getElementById('incorrectAnswers');
 const skippedQuestionsEl = document.getElementById('skippedQuestions');
 const performanceRating = document.getElementById('performanceRating');
+const ratingTextEl = document.querySelector('.rating-text');
+const ratingStarsEl = document.querySelector('.rating-stars');
 
-// Initialize Quiz
+// Review Elements
+const reviewContainer = document.getElementById('reviewContainer');
+
+// Helper Functions
+function showScreen(screenToShow) {
+    screens.forEach(screen => {
+        screen.classList.remove('active');
+    });
+    screenToShow.classList.add('active');
+}
+
+function getRandomQuestions(arr, num) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+function updateStats() {
+    scoreEl.textContent = score;
+}
+
+function updateProgress() {
+    const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
+    progressFill.style.width = `${progress}%`;
+}
+
+// Main Quiz Functions
 function initQuiz() {
+    quizData = getRandomQuestions(fullQuizData, totalQuizQuestions);
     totalQuestionsEl.textContent = quizData.length;
+    currentQuestionIndex = 0;
+    score = 0;
+    userAnswers = [];
+    skippedQuestions = 0;
     updateStats();
 }
 
-// Start Quiz
 function startQuiz() {
     showScreen(questionScreen);
     loadQuestion();
 }
 
-// Load Question
 function loadQuestion() {
     const question = quizData[currentQuestionIndex];
     
-    // Update stats
     currentQuestionEl.textContent = currentQuestionIndex + 1;
     updateProgress();
     
-    // Load content
-    if (question.type === 'image') {
-        contentImage.style.display = 'block';
-        contentVideo.style.display = 'none';
-        contentImage.src = question.content;
+    contentImage.classList.add('hidden');
+    contentVideo.classList.add('hidden');
+    answerButtonsContainer.innerHTML = '';
+    
+    questionTextEl.textContent = question.questionText;
+
+    if (question.type === 'media') {
+        mediaContainer.style.display = 'flex';
+        contentSource.textContent = `Source: ${question.source}`;
+        contentDate.textContent = `Date: ${question.date}`;
+        if (question.mediaType === 'image') {
+            contentImage.src = question.content;
+            contentImage.classList.remove('hidden');
+        } else {
+            contentVideo.src = question.content;
+            contentVideo.classList.remove('hidden');
+            contentVideo.load();
+        }
     } else {
-        contentImage.style.display = 'none';
-        contentVideo.style.display = 'block';
-        contentVideo.src = question.content;
+        mediaContainer.style.display = 'none';
     }
-    
-    // Update metadata
-    contentSource.textContent = `Source: ${question.source}`;
-    contentDate.textContent = `Date: ${question.date}`;
-    
-    // Reset answer buttons
-    answerBtns.forEach(btn => {
-        btn.classList.remove('selected', 'correct', 'incorrect');
-        btn.disabled = false;
+
+    question.answerOptions.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'answer-btn';
+        button.dataset.answer = option.value;
+        button.innerHTML = `<span>${option.text}</span>`;
+        button.addEventListener('click', () => selectAnswer(option.value));
+        answerButtonsContainer.appendChild(button);
     });
 }
 
-// Handle Answer Selection
-function selectAnswer(answer) {
+function selectAnswer(userAnswer) {
     const question = quizData[currentQuestionIndex];
-    const isCorrect = answer === question.answer;
+    const isCorrect = userAnswer === question.correctAnswer;
     
-    // Disable all buttons
-    answerBtns.forEach(btn => {
+    const allButtons = answerButtonsContainer.querySelectorAll('.answer-btn');
+    allButtons.forEach(btn => {
         btn.disabled = true;
-        if (btn.dataset.answer === answer) {
+        if (btn.dataset.answer === userAnswer) {
             btn.classList.add('selected');
-            if (isCorrect) {
-                btn.classList.add('correct');
-                score++;
-            } else {
-                btn.classList.add('incorrect');
-            }
-        } else if (btn.dataset.answer === question.answer) {
+        }
+        if (btn.dataset.answer === question.correctAnswer) {
             btn.classList.add('correct');
+        } else if (btn.dataset.answer === userAnswer) {
+            btn.classList.add('incorrect');
         }
     });
-    
-    // Store user answer
+
     userAnswers.push({
         questionId: question.id,
-        userAnswer: answer,
-        correctAnswer: question.answer,
-        isCorrect: isCorrect
+        userAnswer: userAnswer,
+        correctAnswer: question.correctAnswer,
+        isCorrect: isCorrect,
+        questionText: question.questionText,
+        explanation: question.explanation,
+        options: question.answerOptions,
+        type: question.type
     });
     
-    // Update score
+    if (isCorrect) {
+        score++;
+    }
     updateStats();
     
-    // Show feedback after a short delay
     setTimeout(() => {
-        showFeedback(question, answer, isCorrect);
+        showFeedback(question, isCorrect);
     }, 1000);
 }
 
-// Show Feedback
-function showFeedback(question, userAnswer, isCorrect) {
-    // Update feedback content
+function showFeedback(question, isCorrect) {
     if (isCorrect) {
         feedbackIcon.innerHTML = '<i class="fas fa-check"></i>';
         feedbackTitle.textContent = 'Correct!';
-        feedbackText.textContent = `Great job! You correctly identified this as ${question.answer === 'real' ? 'real' : 'AI-generated'} content.`;
+        feedbackText.textContent = `Great job! You correctly identified the answer.`;
         document.querySelector('.feedback-header').classList.remove('incorrect');
     } else {
         feedbackIcon.innerHTML = '<i class="fas fa-times"></i>';
         feedbackTitle.textContent = 'Incorrect';
-        feedbackText.textContent = `Not quite right. This content is actually ${question.answer === 'real' ? 'real' : 'AI-generated'}.`;
+        feedbackText.textContent = `Not quite right.`;
         document.querySelector('.feedback-header').classList.add('incorrect');
     }
     
     explanationText.textContent = question.explanation;
-    
-    // Update tips
-    tipsList.innerHTML = '';
-    question.tips.forEach(tip => {
-        const li = document.createElement('li');
-        li.textContent = tip;
-        tipsList.appendChild(li);
-    });
+
+    const tipsSection = document.querySelector('.detection-tips');
+    if (question.type === 'media' && question.tips) {
+        tipsSection.style.display = 'block';
+        tipsList.innerHTML = '';
+        question.tips.forEach(tip => {
+            const li = document.createElement('li');
+            li.textContent = tip;
+            tipsList.appendChild(li);
+        });
+    } else {
+        tipsSection.style.display = 'none';
+    }
     
     showScreen(feedbackScreen);
 }
 
-// Next Question
 function nextQuestion() {
     currentQuestionIndex++;
-    
     if (currentQuestionIndex < quizData.length) {
         showScreen(questionScreen);
         loadQuestion();
@@ -318,53 +587,46 @@ function nextQuestion() {
     }
 }
 
-// Skip Question
 function skipQuestion() {
     skippedQuestions++;
     userAnswers.push({
         questionId: quizData[currentQuestionIndex].id,
         userAnswer: 'skipped',
-        correctAnswer: quizData[currentQuestionIndex].answer,
-        isCorrect: false
+        correctAnswer: quizData[currentQuestionIndex].correctAnswer,
+        isCorrect: false,
+        questionText: quizData[currentQuestionIndex].questionText,
+        explanation: quizData[currentQuestionIndex].explanation
     });
     
-    currentQuestionIndex++;
-    
-    if (currentQuestionIndex < quizData.length) {
-        loadQuestion();
-    } else {
-        showResults();
-    }
+    nextQuestion();
 }
 
-// Show Results
 function showResults() {
     const totalQuestions = quizData.length;
     const correctAnswers = score;
     const incorrectAnswers = totalQuestions - correctAnswers - skippedQuestions;
     const percentage = Math.round((correctAnswers / totalQuestions) * 100);
     
-    // Update results
     finalScoreEl.textContent = correctAnswers;
     scorePercentageEl.textContent = `${percentage}%`;
     correctAnswersEl.textContent = correctAnswers;
     incorrectAnswersEl.textContent = incorrectAnswers;
     skippedQuestionsEl.textContent = skippedQuestions;
     
-    // Set performance rating
+    // Updated logic for star rating based on correct answers
     let ratingText = '';
     let stars = 0;
     
-    if (percentage >= 90) {
+    if (correctAnswers >= 9) {
         ratingText = 'Expert Level';
         stars = 5;
-    } else if (percentage >= 80) {
+    } else if (correctAnswers >= 7) {
         ratingText = 'Advanced Level';
         stars = 4;
-    } else if (percentage >= 70) {
+    } else if (correctAnswers >= 5) {
         ratingText = 'Intermediate Level';
         stars = 3;
-    } else if (percentage >= 60) {
+    } else if (correctAnswers >= 3) {
         ratingText = 'Beginner Level';
         stars = 2;
     } else {
@@ -372,95 +634,84 @@ function showResults() {
         stars = 1;
     }
     
-    document.querySelector('.rating-text').textContent = ratingText;
-    
-    const starsContainer = document.querySelector('.rating-stars');
-    starsContainer.innerHTML = '';
+    ratingTextEl.textContent = ratingText;
+    ratingStarsEl.innerHTML = '';
     for (let i = 0; i < 5; i++) {
         const star = document.createElement('i');
         star.className = 'fas fa-star';
-        if (i < stars) {
-            star.style.color = '#FFD700';
-        } else {
-            star.style.color = '#e5e7eb';
-        }
-        starsContainer.appendChild(star);
+        if (i < stars) { star.style.color = '#FFD700'; } 
+        else { star.style.color = '#e5e7eb'; }
+        ratingStarsEl.appendChild(star);
     }
     
     showScreen(resultsScreen);
 }
 
-// Retake Quiz
-function retakeQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    userAnswers = [];
-    skippedQuestions = 0;
-    
-    updateStats();
-    showScreen(questionScreen);
-    loadQuestion();
-}
-
-// View Answers
 function viewAnswers() {
-    // This would typically show a detailed review of all answers
-    alert('Answer review feature would show detailed analysis of each question here!');
-}
+    reviewContainer.innerHTML = '';
+    userAnswers.forEach(answer => {
+        const questionData = fullQuizData.find(q => q.id === answer.questionId);
+        const card = document.createElement('div');
+        card.className = `review-card ${answer.isCorrect ? 'correct' : 'incorrect'}`;
+        
+        let answerText = answer.userAnswer;
+        let correctAnswerText = questionData.correctAnswer;
+        
+        if (answer.type === 'general') {
+            const userAnswerObj = questionData.answerOptions.find(opt => opt.value === answer.userAnswer);
+            const correctAnswerObj = questionData.answerOptions.find(opt => opt.value === questionData.correctAnswer);
+            if (userAnswerObj) answerText = userAnswerObj.text;
+            if (correctAnswerObj) correctAnswerText = correctAnswerObj.text;
+        }
 
-// Update Stats
-function updateStats() {
-    scoreEl.textContent = score;
-}
+        const iconHtml = answer.isCorrect ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>';
 
-// Update Progress
-function updateProgress() {
-    const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
-    progressFill.style.width = `${progress}%`;
-}
-
-// Show Screen
-function showScreen(screen) {
-    [startScreen, questionScreen, feedbackScreen, resultsScreen].forEach(s => {
-        s.classList.remove('active');
+        card.innerHTML = `
+            <h4>${questionData.questionText}</h4>
+            <p>Your Answer: <strong>${answerText}</strong></p>
+            <p>Correct Answer: <strong>${correctAnswerText}</strong></p>
+            <p class="explanation">${questionData.explanation}</p>
+            <div class="icon-status">${iconHtml}</div>
+        `;
+        reviewContainer.appendChild(card);
     });
-    screen.classList.add('active');
+    
+    showScreen(reviewScreen);
 }
 
 // Event Listeners
 startQuizBtn.addEventListener('click', startQuiz);
-
-answerBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        selectAnswer(btn.dataset.answer);
-    });
-});
-
 skipQuestionBtn.addEventListener('click', skipQuestion);
 nextQuestionBtn.addEventListener('click', nextQuestion);
-retakeQuizBtn.addEventListener('click', retakeQuiz);
+
+// Updated "Retake Quiz" button listener
+retakeQuizBtn.addEventListener('click', () => {
+    initQuiz();
+    showScreen(startScreen);
+});
+
 viewAnswersBtn.addEventListener('click', viewAnswers);
+backToResultsBtn.addEventListener('click', () => showScreen(resultsScreen));
 
 // Initialize quiz when page loads
 document.addEventListener('DOMContentLoaded', initQuiz);
 
 // Add keyboard navigation
 document.addEventListener('keydown', (e) => {
-    if (questionScreen.classList.contains('active')) {
-        if (e.key === '1') {
-            selectAnswer('real');
-        } else if (e.key === '2') {
-            selectAnswer('deepfake');
-        } else if (e.key === ' ') {
+    const activeScreen = document.querySelector('.quiz-screen.active');
+    
+    if (activeScreen.id === 'questionScreen') {
+        const keyMap = { 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D' };
+        if (keyMap[e.key]) {
+            selectAnswer(keyMap[e.key]);
+        } else if (e.key === 's') {
             e.preventDefault();
             skipQuestion();
         }
-    } else if (feedbackScreen.classList.contains('active')) {
+    } else if (activeScreen.id === 'feedbackScreen') {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             nextQuestion();
         }
     }
 });
-
-console.log('Quiz functionality loaded successfully!'); 

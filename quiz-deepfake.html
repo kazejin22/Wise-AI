@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepfake Detection Quiz - Web Wise AI</title>
+    <meta name="description" content="Test your deepfake detection skills with our interactive quiz. Identify AI-generated content and learn how to spot deepfakes.">
+    <link rel="canonical" href="https://www.webwiseai.com/quiz-deepfake.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/quiz.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -34,18 +35,17 @@
         </div>
     </nav>
 
-    <!-- Quiz Header -->
     <section class="quiz-header">
         <div class="container">
             <h1 class="quiz-title">Deepfake Detection Quiz</h1>
             <p class="quiz-subtitle">Test your ability to identify AI-generated content</p>
             <div class="quiz-stats">
                 <div class="stat-item">
-                    <span class="stat-number" id="currentQuestion">1</span>
+                    <span class="stat-number" id="currentQuestion">0</span>
                     <span class="stat-label">Question</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" id="totalQuestions">10</span>
+                    <span class="stat-number" id="totalQuestions">0</span>
                     <span class="stat-label">Total</span>
                 </div>
                 <div class="stat-item">
@@ -56,10 +56,8 @@
         </div>
     </section>
 
-    <!-- Quiz Container -->
     <section class="quiz-container">
         <div class="container">
-            <!-- Start Screen -->
             <div id="startScreen" class="quiz-screen active">
                 <div class="start-content">
                     <div class="start-icon">
@@ -88,7 +86,6 @@
                 </div>
             </div>
 
-            <!-- Question Screen -->
             <div id="questionScreen" class="quiz-screen">
                 <div class="question-content">
                     <div class="question-header">
@@ -100,8 +97,8 @@
                     
                     <div class="content-display">
                         <div class="content-container">
-                            <img id="contentImage" src="" alt="Quiz content" style="display: none;">
-                            <video id="contentVideo" controls style="display: none;">
+                            <img id="contentImage" src="" alt="Quiz content" class="hidden">
+                            <video id="contentVideo" controls class="hidden">
                                 <source src="" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -114,16 +111,8 @@
                         </div>
                     </div>
 
-                    <div class="answer-buttons">
-                        <button class="answer-btn" data-answer="real">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Real</span>
-                        </button>
-                        <button class="answer-btn" data-answer="deepfake">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span>Deepfake</span>
-                        </button>
-                    </div>
+                    <div class="answer-buttons-container">
+                        </div>
 
                     <div class="question-navigation">
                         <button id="skipQuestion" class="btn btn-secondary">
@@ -134,7 +123,6 @@
                 </div>
             </div>
 
-            <!-- Feedback Screen -->
             <div id="feedbackScreen" class="quiz-screen">
                 <div class="feedback-content">
                     <div class="feedback-header">
@@ -149,16 +137,12 @@
                         
                         <div class="explanation-box">
                             <h4>Why this is correct:</h4>
-                            <p id="explanationText">This content shows natural facial movements, consistent lighting, and realistic proportions that are characteristic of genuine footage.</p>
+                            <p id="explanationText"></p>
                         </div>
 
                         <div class="detection-tips">
                             <h4>Detection Tips:</h4>
-                            <ul id="tipsList">
-                                <li>Look for unnatural facial movements</li>
-                                <li>Check for inconsistent lighting</li>
-                                <li>Examine background details</li>
-                            </ul>
+                            <ul id="tipsList"></ul>
                         </div>
                     </div>
 
@@ -171,7 +155,6 @@
                 </div>
             </div>
 
-            <!-- Results Screen -->
             <div id="resultsScreen" class="quiz-screen">
                 <div class="results-content">
                     <div class="results-header">
@@ -216,11 +199,11 @@
                     </div>
 
                     <div class="results-actions">
-                        <button id="retakeQuiz" class="btn btn-secondary">
+                        <button id="retakeQuizBtn" class="btn btn-outline">
                             <i class="fas fa-redo"></i>
                             Retake Quiz
                         </button>
-                        <button id="viewAnswers" class="btn btn-primary">
+                        <button id="viewAnswersBtn" class="btn btn-primary">
                             <i class="fas fa-eye"></i>
                             Review Answers
                         </button>
@@ -231,10 +214,24 @@
                     </div>
                 </div>
             </div>
+
+            <div id="reviewScreen" class="quiz-screen">
+                <div class="review-header">
+                    <h2>Answer Review</h2>
+                    <p>See how you did and learn from your mistakes!</p>
+                </div>
+                <div id="reviewContainer" class="review-container">
+                    </div>
+                <div class="review-navigation">
+                    <button id="backToResultsBtn" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Results
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -287,4 +284,4 @@
     <script src="js/script.js"></script>
     <script src="js/quiz.js"></script>
 </body>
-</html> 
+</html>
