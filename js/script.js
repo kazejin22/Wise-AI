@@ -74,12 +74,16 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
+// Observe elements for animation (extended to home sections)
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.feature-card, .testimonial-card, .stat-item');
-    animateElements.forEach(el => {
+    const animateElements = document.querySelectorAll(
+        '.feature-card, .testimonial-card, .stat-item, .latest-video .featured-card, .quotes-section .quotes-slider'
+    );
+    animateElements.forEach((el, idx) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        // Slight horizontal offset for variety
+        const horizontalOffset = idx % 2 === 0 ? '12px' : '-12px';
+        el.style.transform = `translateY(30px) translateX(${horizontalOffset})`;
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
@@ -116,20 +120,30 @@ playButtons.forEach(button => {
     });
 });
 
-// Counter animation for stats
-function animateCounter(element, target, duration = 2000) {
+// Counter animation for stats (supports decimals and '+' suffix span)
+function animateCounter(element, target, duration = 1200, options = {}) {
+    const { decimals = 0, suffixHTML = '', isPercent = false } = options;
     let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
+    const frames = Math.max(1, Math.round(duration / 16));
+    const increment = (target - start) / frames;
+    let frame = 0;
+
+    const rafStep = () => {
+        frame++;
         start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
+        const done = frame >= frames;
+        const value = done ? target : start;
+        const formatted = decimals > 0 ? value.toFixed(decimals) : Math.floor(value).toString();
+        if (isPercent) {
+            element.textContent = formatted + '%';
         } else {
-            element.textContent = Math.floor(start);
+            element.innerHTML = formatted + suffixHTML;
         }
-    }, 16);
+        if (!done) {
+            requestAnimationFrame(rafStep);
+        }
+    };
+    requestAnimationFrame(rafStep);
 }
 
 // Trigger counter animation when stats section is visible
@@ -138,21 +152,32 @@ const statsObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(/\D/g, ''));
-                if (stat.textContent.includes('K')) {
-                    animateCounter(stat, target, 2000);
-                    setTimeout(() => {
-                        stat.textContent = target + 'K+';
-                    }, 2000);
-                } else if (stat.textContent.includes('%')) {
-                    animateCounter(stat, target, 2000);
-                    setTimeout(() => {
-                        stat.textContent = target + '%';
-                    }, 2000);
-                } else if (stat.textContent.includes('24/7')) {
-                    // Don't animate this one
+                const original = stat.innerHTML.trim();
+                // Skip 24/7 style values
+                if (original.includes('24/7')) return;
+
+                const hasPlusSpan = stat.querySelector('.stat-suffix');
+                const hasPercent = original.includes('%');
+                // Capture decimals for percent values
+                let decimals = 0;
+                let numericTarget = 0;
+                if (hasPercent) {
+                    const match = original.match(/([0-9]+(?:\.[0-9]+)?)/);
+                    if (match) {
+                        const numStr = match[1];
+                        numericTarget = parseFloat(numStr);
+                        decimals = (numStr.split('.')[1] || '').length;
+                    }
                 } else {
-                    animateCounter(stat, target, 2000);
+                    const match = original.match(/([0-9]+)/);
+                    if (match) numericTarget = parseInt(match[1], 10);
+                }
+
+                const suffixHTML = hasPlusSpan ? '<span class="stat-suffix">+</span>' : '';
+                if (hasPercent) {
+                    animateCounter(stat, numericTarget, 1200, { decimals, isPercent: true });
+                } else {
+                    animateCounter(stat, numericTarget, 1200, { decimals: 0, suffixHTML });
                 }
             });
             statsObserver.unobserve(entry.target);

@@ -193,6 +193,14 @@
     background: #F9FAFB;
 }
 
+/* FAQ title icon */
+.section-title .faq-icon {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .faq-grid {
     display: grid;
     gap: 1rem;
@@ -366,6 +374,12 @@
     
     .contact-content {
         padding: 2rem 0;
+    }
+
+    /* Smaller icon on small screens */
+    .section-title .faq-icon {
+        width: 72px;
+        height: 72px;
     }
     
     .faq-question {

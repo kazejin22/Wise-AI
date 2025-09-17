@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Wise AI - Learning Safe & Ethical AI</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/learning.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -23,7 +25,6 @@
                 <li><a href="map.html" class="nav-link">Case Map</a></li>
                 <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -58,22 +59,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-card">
-                    <div class="card-header">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>AI Safety First</span>
-                    </div>
-                    <div class="card-content">
-                        <div class="stat">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">Detection Accuracy</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">10K+</span>
-                            <span class="stat-label">Cases Analyzed</span>
-                        </div>
-                    </div>
-                </div>
+                <img src="assets/images/foto.PNG" alt="Web Wise AI" class="hero-visual-image" />
             </div>
         </div>
     </section>
@@ -87,7 +73,7 @@
                     <div class="feature-icon">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h3>Deepfake Detection</h3>
+                    <h3>AI Quiz</h3>
                     <p>Learn to identify AI-generated content through interactive quizzes and real-world examples.</p>
                 </div>
                 <div class="feature-card">
@@ -119,74 +105,138 @@
     <section class="latest-video">
         <div class="container">
             <h2 class="section-title">Latest Educational Content</h2>
-            <div class="video-container">
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <img src="https://via.placeholder.com/600x400/4F46E5/FFFFFF?text=AI+Detection+Tutorial" alt="AI Detection Tutorial">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h3>How to Spot Deepfakes: A Complete Guide</h3>
-                        <p>Learn the fundamental techniques used by experts to identify AI-generated content in videos and images.</p>
-                        <div class="video-meta">
-                            <span><i class="fas fa-clock"></i> 15 min</span>
-                            <span><i class="fas fa-eye"></i> Beginner</span>
-                        </div>
-                    </div>
+            <!-- Use the exact featured-card structure from Learning Center -->
+            <div class="featured-card" data-category="basics">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/s8IGWdkxM9E" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
+                <div class="video-info">
+                    <div class="video-meta">
+                        <span class="category basics">AI Basics</span>
+                        <span class="duration"><i class="fas fa-clock"></i> 1:10 min</span>
+                        <span class="level"><i class="fas fa-star"></i> Advanced</span>
+                    </div>
+                    <h3>What is AI?</h3>
+                    <p>An accessible introduction to artificial intelligence: what it is, how machines learn, and where AI appears in daily life—demystified with clear analogies and examples.</p>
+                </div>
+            </div>
+            <div class="cta-buttons" style="margin-top: 1rem; justify-content: center;">
+                <a href="learning.html" class="btn btn-primary">
+                    <i class="fas fa-graduation-cap"></i>
+                    More Content
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
+    <!-- User Quotes (synced with About page) -->
+    <section class="quotes-section">
         <div class="container">
-            <h2 class="section-title">What Experts Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"AI detection skills are becoming as essential as digital literacy. This platform makes learning accessible to everyone."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
+            <h2 class="section-title">What Users Say</h2>
+            <div class="quotes-slider">
+                <button class="quotes-nav prev" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="quotes-viewport" id="quotesViewport">
+                    <div class="quotes-track" id="quotesTrack">
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"Your lessons finally made AI detection click for me. The examples are clear and the checklists are so practical—I use them every day."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Elvia</h4>
+                                    <span>Student & Content Creator</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="author-info">
-                            <h4>Dr. Sarah Chen</h4>
-                            <span>AI Ethics Researcher, Stanford</span>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"I shared these resources with my team. Our ability to spot manipulated clips improved immediately—huge time saver."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Zain</h4>
+                                    <span>Social Media Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"The bite‑sized lessons and practical tips helped my students build confidence quickly. This is the guide we needed."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Zee</h4>
+                                    <span>Student</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"The frameworks are simple but powerful. I can assess suspicious videos faster and explain my reasoning to colleagues."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Ravi</h4>
+                                    <span>Communications Lead</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"Love the checklists! They turned vague intuition into concrete steps. My accuracy is way better now."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Lina</h4>
+                                    <span>Journalism Student</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"Our classroom discussions are so much richer. Students quickly pick up the signs of AI manipulation."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Arman</h4>
+                                    <span>Teacher</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"Short lessons fit my schedule. I learned to spot artifacts I’d never noticed before."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Mira</h4>
+                                    <span>Creator</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-content">
+                                <p>"Practical, clear, and up‑to‑date. Exactly what our community needed to stay safe online."</p>
+                            </div>
+                            <div class="quote-author">
+                                <div class="author-info">
+                                    <h4>Dani</h4>
+                                    <span>Community Moderator</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The interactive approach to learning AI detection is brilliant. It's not just theory—it's practical skills you can use immediately."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-info">
-                            <h4>Marcus Rodriguez</h4>
-                            <span>Cybersecurity Expert</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"In today's world, being able to distinguish between real and AI-generated content is crucial for informed decision-making."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-info">
-                            <h4>Prof. Emily Watson</h4>
-                            <span>Digital Media Studies, MIT</span>
-                        </div>
-                    </div>
-                </div>
+                <button class="quotes-nav next" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -196,20 +246,20 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Users Educated</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Real Cases Analyzed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
+                    <div class="stat-number">89.7%</div>
                     <div class="stat-label">Detection Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5<span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Learning Topics</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">24/7</div>
                     <div class="stat-label">Learning Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40<span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Recorded Cases</div>
                 </div>
             </div>
         </div>
@@ -225,12 +275,6 @@
                         <span>Web Wise AI</span>
                     </div>
                     <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -245,7 +289,6 @@
                     <h3>Resources</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
@@ -265,6 +308,90 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+<script src="js/script.js"></script>
+<script>
+// Quotes slider: infinite, always 3 visible (center + fades), seamless rotation
+(function(){
+    const viewport = document.getElementById('quotesViewport');
+    const track = document.getElementById('quotesTrack');
+    const prevBtn = document.querySelector('.quotes-nav.prev');
+    const nextBtn = document.querySelector('.quotes-nav.next');
+
+    function cards() { return Array.from(track.querySelectorAll('.quote-card')); }
+
+    function getStep() {
+        const first = track.querySelector('.quote-card');
+        if (!first) return 0;
+        const cardWidth = first.getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap || '0');
+        return cardWidth + gap;
+    }
+
+    function setClasses() {
+        const arr = cards();
+        // center is index 1 (middle of 3 visible peek layout)
+        arr.forEach((c, i) => { c.classList.remove('active','near'); });
+        if (arr.length === 0) return;
+        const centerIdx = 1; // ensure center is second element after rotations
+        const leftIdx = 0;
+        const rightIdx = 2 % arr.length;
+        if (arr[leftIdx]) arr[leftIdx].classList.add('near');
+        if (arr[centerIdx]) arr[centerIdx].classList.add('active');
+        if (arr[rightIdx]) arr[rightIdx].classList.add('near');
+    }
+
+    function animateTo(x, cb) {
+        track.style.transition = 'transform 0.45s cubic-bezier(.22,.61,.36,1)';
+        track.style.transform = `translateX(${x}px)`;
+        const onEnd = () => { track.removeEventListener('transitionend', onEnd); track.style.transition = 'none'; cb && cb(); };
+        track.addEventListener('transitionend', onEnd);
+    }
+
+    function next() {
+        const step = -getStep();
+        animateTo(step, () => {
+            // rotate: move first to end
+            const first = track.firstElementChild;
+            if (first) track.appendChild(first);
+            track.style.transform = 'translateX(0px)';
+            setClasses();
+        });
+    }
+
+    function prev() {
+        const step = -getStep();
+        // pre-rotate: move last to start and offset left instantly, then animate back to 0
+        const last = track.lastElementChild;
+        if (last) track.insertBefore(last, track.firstElementChild);
+        track.style.transition = 'none';
+        track.style.transform = `translateX(${step}px)`;
+        requestAnimationFrame(() => {
+            animateTo(0, () => { setClasses(); });
+        });
+    }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // Swipe support
+    let startX = 0, dragging = false;
+    track.addEventListener('pointerdown', (e) => { dragging = true; startX = e.clientX; track.setPointerCapture(e.pointerId); });
+    track.addEventListener('pointerup', (e) => {
+        if (!dragging) return; dragging = false;
+        const delta = e.clientX - startX;
+        if (Math.abs(delta) > 40) { delta < 0 ? next() : prev(); }
+    });
+
+    // Initialize: ensure left side not empty by rotating once so middle has neighbors
+    // Move last to front to have a left neighbor initially
+    const last = track.lastElementChild;
+    if (last) track.insertBefore(last, track.firstElementChild);
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(0px)';
+    setClasses();
+    // recalc on resize
+    window.addEventListener('resize', () => { track.style.transition = 'none'; track.style.transform = 'translateX(0px)'; setClasses(); });
+})();
+</script>
 </body>
-</html> 
+</html>

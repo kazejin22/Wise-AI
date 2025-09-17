@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 </head>
 <body>
     <nav class="navbar">
@@ -25,7 +27,6 @@
                 <li><a href="map.html" class="nav-link active">Case Map</a></li>
                 <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -34,6 +35,58 @@
             </div>
         </div>
     </nav>
+    
+    <!-- Control Panel -->
+    <div id="control-panel" class="control-panel">
+        <div class="control-header">
+            <h3><i class="fas fa-filter"></i> Filters & Search</h3>
+            <button id="toggle-panel" class="toggle-btn"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search cases..." class="search-input">
+            <button id="clear-search" class="clear-btn"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <!-- Category Filters -->
+        <div class="filter-section">
+            <h4>Categories</h4>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All <span class="count"></span></button>
+                <button class="filter-btn" data-category="politics">Politics <span class="count"></span></button>
+                <button class="filter-btn" data-category="financial">Financial <span class="count"></span></button>
+                <button class="filter-btn" data-category="hoax">Hoax <span class="count"></span></button>
+                <button class="filter-btn" data-category="social">Social <span class="count"></span></button>
+            </div>
+        </div>
+        
+        <!-- Date Range Filter -->
+        <div class="filter-section">
+            <h4>Date Range</h4>
+            <select id="date-filter" class="date-select">
+                <option value="all">All Time</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="recent">Last 6 Months</option>
+            </select>
+        </div>
+        
+        <!-- Statistics -->
+        <div class="stats-section">
+            <h4>Statistics</h4>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-cases">0</span>
+                    <span class="stat-label">Total Cases</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="visible-cases">0</span>
+                    <span class="stat-label">Visible</span>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="map"></div>
 
@@ -98,7 +151,6 @@
                     <h3>Resources</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
@@ -120,6 +172,7 @@
     
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="js/script.js"></script>
     <script src="js/map.js"></script>
 </body>

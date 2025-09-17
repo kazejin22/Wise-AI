@@ -126,7 +126,8 @@
 .file-preview img,
 .file-preview video {
     max-width: 100%;
-    max-height: 300px;
+    width: 100%;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -153,6 +154,18 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.file-actions .btn-secondary {
+    background: #f3f4f6;
+    color: #666;
+    border: 2px solid #e5e7eb;
+}
+
+.file-actions .btn-secondary:hover {
+    background: #e5e7eb;
+    color: #333;
+    transform: translateY(-2px);
 }
 
 /* Analysis Section */
@@ -246,6 +259,58 @@
     color: white;
 }
 
+/* Red theme for AI/Deepfake content */
+.results-header.ai-content {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+}
+
+/* Green theme for authentic content */
+.results-header.authentic-content {
+    background: linear-gradient(135deg, #10B981, #059669);
+}
+
+/* AI content result icon styling */
+.result-icon.ai-content {
+    background: #EF4444;
+}
+
+/* Authentic content result icon styling */
+.result-icon.authentic-content {
+    background: #10B981;
+}
+
+/* AI content result title styling */
+.result-title.ai-content h4 {
+    color: #DC2626;
+}
+
+/* Authentic content result title styling */
+.result-title.authentic-content h4 {
+    color: #059669;
+}
+
+/* AI content risk value styling */
+.ai-content .risk-value.high-risk {
+    color: #DC2626;
+    font-weight: 800;
+}
+
+/* Authentic content risk value styling */
+.authentic-content .risk-value.low-risk {
+    color: #059669;
+    font-weight: 800;
+}
+
+/* AI content confidence styling */
+.ai-content .confidence-value.very-high-confidence {
+    color: #DC2626;
+}
+
+/* Authentic content confidence styling */
+.authentic-content .confidence-value.very-high-confidence {
+    color: #059669;
+}
+
 .results-header h3 {
     font-size: 1.8rem;
     font-weight: 600;
@@ -278,7 +343,34 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.result-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+/* Hide any icon classes on the container itself */
+.result-icon.fas,
+.result-icon.fa-robot {
+    font-family: inherit;
+}
+
+.result-icon.fas:before,
+.result-icon.fa-robot:before {
+    display: none;
 }
 
 .result-icon.warning {
@@ -321,13 +413,49 @@
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
-.metric-value {
+/* Consistent styling for all metric values */
+.metric-value,
+.risk-value,
+.confidence-value,
+#manipulationRisk,
+#confidenceLevel {
     display: block;
     font-size: 1.5rem;
     font-weight: 700;
     color: #333;
+}
+
+/* Risk level specific colors */
+.risk-value.low-risk {
+    color: #10B981;
+}
+
+.risk-value.medium-risk {
+    color: #F59E0B;
+}
+
+.risk-value.high-risk {
+    color: #EF4444;
+}
+
+/* Confidence level specific colors */
+.confidence-value.low-confidence {
+    color: #6B7280;
+}
+
+.confidence-value.medium-confidence {
+    color: #3B82F6;
+}
+
+.confidence-value.high-confidence {
+    color: #8B5CF6;
+}
+
+.confidence-value.very-high-confidence {
+    color: #059669;
 }
 
 .result-details {
@@ -399,6 +527,30 @@
     justify-content: center;
     flex-wrap: wrap;
     border-top: 1px solid #e5e7eb;
+}
+
+.results-actions .btn-secondary {
+    background: #f3f4f6;
+    color: #666;
+    border: 2px solid #e5e7eb;
+}
+
+.results-actions .btn-secondary:hover {
+    background: #e5e7eb;
+    color: #333;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #4F46E5;
+    color: #4F46E5;
+}
+
+.btn-outline:hover {
+    background: #4F46E5;
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* How It Works */

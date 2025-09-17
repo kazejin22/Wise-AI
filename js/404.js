@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             { title: 'Learning Center', url: 'learning.html', keywords: ['learning', 'education', 'tutorial', 'video', 'course'] },
             { title: 'Case Map', url: 'map.html', keywords: ['map', 'case', 'world', 'global', 'incident'] },
             { title: 'Detection Test', url: 'deepware-api.html', keywords: ['detection', 'test', 'api', 'deepware', 'analyze'] },
-            { title: 'About Us', url: 'about.html', keywords: ['about', 'mission', 'team', 'story'] },
-            { title: 'Contact', url: 'contact.html', keywords: ['contact', 'support', 'help', 'feedback'] }
+            { title: 'About Us', url: 'about.html', keywords: ['about', 'mission', 'team', 'story'] }
         ];
         
         const results = searchablePages.filter(page => {

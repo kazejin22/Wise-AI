@@ -1,159 +1,70 @@
+(function(){
+'use strict';
 // Video Data
 const videoData = [
     {
         id: 1,
-        title: "Introduction to Deepfake Detection",
-        description: "Learn the basics of identifying AI-generated content and understanding the technology behind deepfakes.",
+        title: "Deteksi Deepfake #1",
+        description: "Video pembelajaran tentang deteksi deepfake (link 1).",
         category: "deepfake",
         duration: "12 min",
         level: "Beginner",
         views: "23K",
         likes: "1.2K",
         date: "1 week ago",
-        thumbnail: "https://via.placeholder.com/300x200/4F46E5/FFFFFF?text=Deepfake+Intro",
-        videoId: "dQw4w9WgXcQ"
+        thumbnail: "https://via.placeholder.com/300x200/4F46E5/FFFFFF?text=Deepfake+%231",
+        videoId: "ch-CU5VG1fs"
     },
     {
         id: 2,
-        title: "AI Ethics in Digital Media",
-        description: "Explore the ethical implications of AI technology and its impact on society and media.",
-        category: "ethics",
+        title: "Deteksi Deepfake #2",
+        description: "Video pembelajaran tentang deteksi deepfake (link 2).",
+        category: "deepfake",
         duration: "18 min",
         level: "Intermediate",
         views: "15K",
         likes: "890",
         date: "2 weeks ago",
-        thumbnail: "https://via.placeholder.com/300x200/1E40AF/FFFFFF?text=AI+Ethics",
-        videoId: "dQw4w9WgXcQ"
+        thumbnail: "https://via.placeholder.com/300x200/1E40AF/FFFFFF?text=Deepfake+%232",
+        videoId: "02rVRwovRow"
     },
     {
         id: 3,
-        title: "Cybersecurity Threats from AI",
-        description: "Understanding how AI can be used maliciously and how to protect against cyber threats.",
-        category: "cybercrime",
+        title: "Deteksi Deepfake #3",
+        description: "Video pembelajaran tentang deteksi deepfake (link 3).",
+        category: "deepfake",
         duration: "22 min",
         level: "Advanced",
         views: "8.5K",
         likes: "567",
         date: "3 weeks ago",
-        thumbnail: "https://via.placeholder.com/300x200/991B1B/FFFFFF?text=Cyber+Threats",
-        videoId: "dQw4w9WgXcQ"
+        thumbnail: "https://via.placeholder.com/300x200/991B1B/FFFFFF?text=Deepfake+%233",
+        videoId: "s8IGWdkxM9E"
     },
     {
         id: 4,
-        title: "Legal Framework for AI Detection",
-        description: "Understanding the legal aspects and regulations surrounding AI-generated content.",
-        category: "law",
-        duration: "25 min",
-        level: "Intermediate",
-        views: "12K",
-        likes: "745",
-        date: "1 month ago",
-        thumbnail: "https://via.placeholder.com/300x200/065F46/FFFFFF?text=AI+Law",
+        title: "Dummy Video A",
+        description: "Konten dummy untuk melengkapi 5 video.",
+        category: "ethics",
+        duration: "20 min",
+        level: "Beginner",
+        views: "3.1K",
+        likes: "210",
+        date: "5 days ago",
+        thumbnail: "https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=Dummy+A",
         videoId: "dQw4w9WgXcQ"
     },
     {
         id: 5,
-        title: "Advanced Deepfake Detection Techniques",
-        description: "Master advanced methods for detecting sophisticated AI-generated content.",
-        category: "deepfake",
-        duration: "30 min",
-        level: "Expert",
-        views: "6.2K",
-        likes: "423",
-        date: "2 weeks ago",
-        thumbnail: "https://via.placeholder.com/300x200/F59E0B/FFFFFF?text=Advanced+Detection",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 6,
-        title: "The Psychology of Deepfake Deception",
-        description: "Understanding how deepfakes manipulate human psychology and perception.",
-        category: "ethics",
-        duration: "20 min",
-        level: "Intermediate",
-        views: "9.8K",
-        likes: "612",
-        date: "1 week ago",
-        thumbnail: "https://via.placeholder.com/300x200/7C3AED/FFFFFF?text=Psychology",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 7,
-        title: "AI Detection Tools and Software",
-        description: "A comprehensive guide to the best tools and software for detecting AI-generated content.",
-        category: "deepfake",
-        duration: "28 min",
-        level: "Intermediate",
-        views: "18K",
-        likes: "1.1K",
-        date: "3 days ago",
-        thumbnail: "https://via.placeholder.com/300x200/10B981/FFFFFF?text=Detection+Tools",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 8,
-        title: "Case Studies: Real Deepfake Incidents",
-        description: "Analyzing real-world cases where deepfakes were used maliciously and their impact.",
+        title: "Dummy Video B",
+        description: "Konten dummy untuk melengkapi 5 video.",
         category: "cybercrime",
-        duration: "35 min",
-        level: "Advanced",
-        views: "11K",
-        likes: "789",
+        duration: "24 min",
+        level: "Intermediate",
+        views: "4.5K",
+        likes: "320",
         date: "1 week ago",
-        thumbnail: "https://via.placeholder.com/300x200/EF4444/FFFFFF?text=Case+Studies",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 9,
-        title: "Future of AI Detection Technology",
-        description: "Exploring emerging technologies and trends in AI detection and prevention.",
-        category: "deepfake",
-        duration: "32 min",
-        level: "Expert",
-        views: "7.3K",
-        likes: "456",
-        date: "5 days ago",
-        thumbnail: "https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=Future+Tech",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 10,
-        title: "International AI Regulations",
-        description: "Comparing AI regulations and policies across different countries and regions.",
-        category: "law",
-        duration: "40 min",
-        level: "Advanced",
-        views: "5.9K",
-        likes: "334",
-        date: "2 weeks ago",
-        thumbnail: "https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Regulations",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 11,
-        title: "Building AI Detection Skills",
-        description: "Practical exercises and training to improve your AI detection abilities.",
-        category: "deepfake",
-        duration: "45 min",
-        level: "Beginner",
-        views: "14K",
-        likes: "923",
-        date: "1 month ago",
-        thumbnail: "https://via.placeholder.com/300x200/EC4899/FFFFFF?text=Skills+Training",
-        videoId: "dQw4w9WgXcQ"
-    },
-    {
-        id: 12,
-        title: "Ethical AI Development",
-        description: "How to develop AI systems responsibly and ethically.",
-        category: "ethics",
-        duration: "38 min",
-        level: "Expert",
-        views: "4.7K",
-        likes: "298",
-        date: "1 week ago",
-        thumbnail: "https://via.placeholder.com/300x200/F97316/FFFFFF?text=Ethical+AI",
+        thumbnail: "https://via.placeholder.com/300x200/F59E0B/FFFFFF?text=Dummy+B",
         videoId: "dQw4w9WgXcQ"
     }
 ];
@@ -163,7 +74,7 @@ let currentFilter = 'all';
 let currentSearch = '';
 let displayedVideos = [];
 let currentPage = 1;
-const videosPerPage = 6;
+const videosPerPage = 5;
 
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
@@ -174,31 +85,54 @@ const loadMoreBtn = document.getElementById('loadMoreBtn');
 
 // Initialize the page
 function initLearningCenter() {
-    loadVideos();
-    setupEventListeners();
+    console.log('[Learning] initLearningCenter called');
+    try {
+        loadVideos();
+        console.log(`[Learning] Loaded videos, to render: ${displayedVideos.length}`);
+    } catch (e) {
+        console.error('[Learning] Error during loadVideos:', e);
+    }
+    try {
+        setupEventListeners();
+        console.log('[Learning] Event listeners set');
+    } catch (e) {
+        console.error('[Learning] Error during setupEventListeners:', e);
+    }
 }
 
 // Setup event listeners
 function setupEventListeners() {
     // Search functionality
-    searchInput.addEventListener('input', handleSearch);
-    searchBtn.addEventListener('click', handleSearch);
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    } else {
+        console.warn('[Learning] searchInput not found');
+    }
+    if (searchBtn) {
+        searchBtn.addEventListener('click', handleSearch);
+    } else {
+        console.warn('[Learning] searchBtn not found');
+    }
 
     // Filter functionality
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const category = btn.dataset.category;
-            setActiveFilter(category);
+    if (filterBtns && filterBtns.length) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                setActiveFilter(category);
+            });
         });
-    });
+    }
 
     // Load more functionality
-    loadMoreBtn.addEventListener('click', loadMoreVideos);
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', loadMoreVideos);
+    }
 }
 
 // Handle search
@@ -290,6 +224,7 @@ function renderVideos() {
         const videoCard = createVideoCard(video);
         videoGrid.appendChild(videoCard);
     });
+    console.log(`[Learning] Rendered ${displayedVideos.length} video cards`);
 }
 
 // Create video card
@@ -383,8 +318,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', initLearningCenter);
+// Initialize when page loads (ensure it runs even if script is loaded after DOMContentLoaded)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLearningCenter);
+} else {
+    initLearningCenter();
+}
 
 // Add smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -434,3 +373,5 @@ renderVideos = function() {
 };
 
 console.log('Learning center functionality loaded successfully!'); 
+
+})();

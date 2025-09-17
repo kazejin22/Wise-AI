@@ -1,382 +1,444 @@
-// Quiz Data - A total of 15 questions
+// Function to shuffle array elements
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Function to randomize answer options and update correct answer
+function randomizeAnswerOptions(question) {
+    const options = [...question.answerOptions];
+    const correctOption = options.find(opt => opt.value === question.correctAnswer);
+    
+    // Shuffle the options
+    const shuffledOptions = shuffleArray(options);
+    
+    // Find the new position of the correct answer
+    const newCorrectOption = shuffledOptions.find(opt => opt.text === correctOption.text);
+    
+    return {
+        ...question,
+        answerOptions: shuffledOptions,
+        correctAnswer: newCorrectOption.value
+    };
+}
+
+// Quiz Data - Total 50 English text questions about deepfake and AI detection
 const fullQuizData = [
     {
         id: 1,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2019/07/04/10/43/face-4316040_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is deepfake technology?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Regular video editing software', value: 'a' },
+            { text: 'AI that can create realistic fake content', value: 'b' },
+            { text: 'Photo filter application', value: 'c' },
+            { text: '3D animation software', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Gambar ini memiliki tekstur kulit yang terlalu mulus dan tidak realistis, serta simetri wajah yang terlalu sempurna. Ini adalah tanda umum dari konten yang dihasilkan AI.',
-        tips: ['Kulit terlalu halus atau seperti plastik', 'Simetri wajah yang tidak wajar', 'Rambut dan telinga yang kabur atau aneh'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Deepfake is AI technology that uses machine learning to create fake content (video, audio, or images) that looks extremely realistic and is difficult to distinguish from real content.',
+        tips: ['Deepfake uses neural networks', 'Can replace faces or voices', 'Potentially misused for fraud'],
+        category: 'definition'
     },
     {
         id: 2,
-        type: 'media',
-        mediaType: 'video',
-        content: 'https://assets.mixkit.co/videos/preview/mixkit-womans-face-close-up-165-large.mp4',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'Which of the following is NOT a characteristic of deepfake videos?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Unnatural eye movements', value: 'a' },
+            { text: 'Perfect lip-sync with audio', value: 'b' },
+            { text: 'Inconsistent lighting', value: 'c' },
+            { text: 'Stiff facial expressions', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Video ini menunjukkan gerakan bibir dan ekspresi wajah yang sangat natural. Sinkronisasi audio-visualnya sempurna, dan tidak ada glitch visual yang terlihat.',
-        tips: ['Sinkronisasi audio-visual yang sempurna', 'Ekspresi wajah yang alami', 'Tidak ada distorsi atau glitch di wajah'],
-        source: 'Public Domain',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Perfect lip-sync with audio actually indicates real content. Deepfakes often have synchronization problems between lip movements and audio.',
+        tips: ['Pay attention to audio-video synchronization', 'Look for micro-movements on the face', 'Check lighting consistency'],
+        category: 'characteristics'
     },
     {
         id: 3,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2019/08/21/11/47/human-4420800_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is the most common AI technology used to create deepfakes?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'GAN (Generative Adversarial Networks)', value: 'a' },
+            { text: 'CNN (Convolutional Neural Networks)', value: 'b' },
+            { text: 'RNN (Recurrent Neural Networks)', value: 'c' },
+            { text: 'SVM (Support Vector Machines)', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Perhatikan bagaimana pencahayaan pada wajah tidak konsisten dengan sumber cahaya di latar belakang. Ini adalah artefak pencahayaan yang sering muncul pada deepfake.',
-        tips: ['Bayangan yang tidak wajar', 'Cahaya yang tidak sesuai dengan sumbernya', 'Inkonsistensi warna dan temperatur cahaya'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'a',
+        explanation: 'GAN is the most common technology for creating deepfakes. GAN consists of two competing neural networks: a generator that creates content and a discriminator that detects authenticity.',
+        tips: ['GAN works with competition between two networks', 'Generator creates fake content', 'Discriminator tries to detect fakes'],
+        category: 'technology'
     },
     {
         id: 4,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2020/06/10/01/29/man-5280327_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'Which body part is most difficult for AI to replicate in deepfakes?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Face', value: 'a' },
+            { text: 'Hands and fingers', value: 'b' },
+            { text: 'Hair', value: 'c' },
+            { text: 'Shoulders', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: "Mata pada gambar ini berkedip dengan pola yang tidak teratur dan alami. Selain itu, ada pantulan cahaya yang realistis di dalam mata.",
-        tips: ["Pola kedipan mata yang tidak teratur", "Pantulan cahaya yang realistis", "Tidak ada 'stare' atau tatapan kaku"],
-        source: 'Associated Press',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Hands and fingers are the most difficult body parts for AI to replicate due to the many joints and complex movements that need to be simulated.',
+        tips: ['Pay attention to hand movements', 'Check unnatural finger positions', 'Look at hand-object interactions'],
+        category: 'detection'
     },
     {
         id: 5,
-        type: 'media',
-        mediaType: 'video',
-        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-man-with-a-blue-and-red-background-1563-large.mp4',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is the primary goal of deepfake detection?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Block all videos', value: 'a' },
+            { text: 'Identify and verify the authenticity of digital content', value: 'b' },
+            { text: 'Delete social media', value: 'c' },
+            { text: 'Limit internet usage', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: "Video ini menunjukkan ekspresi wajah yang kaku atau robotik. Gerakan wajah tidak mengalir secara natural dan terlihat seperti 'topeng'.",
-        tips: ['Ekspresi wajah yang kaku dan tidak alami', 'Kurangnya gerakan mikro pada wajah', 'Perubahan ekspresi yang tiba-tiba'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'The primary goal of deepfake detection is to identify and verify the authenticity of digital content to prevent the spread of misinformation and protect individuals from misuse.',
+        tips: ['Focus on authenticity verification', 'Prevent misinformation', 'Protect individual privacy'],
+        category: 'purpose'
     },
     {
         id: 6,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2021/04/10/22/08/ai-6168581_1280.png',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'How can individuals protect themselves from deepfake scams?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Trust all online content', value: 'a' },
+            { text: 'Verify sources and be skeptical of unusual requests', value: 'b' },
+            { text: 'Share everything on social media', value: 'c' },
+            { text: 'Use only one password for all accounts', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Jari tangan dan anggota tubuh yang aneh (jumlah jari tidak normal, jari terlalu panjang) adalah salah satu ciri deepfake yang paling sering gagal direplikasi.',
-        tips: ['Jumlah jari tidak normal', 'Bentuk jari aneh atau distorsi', 'Proporsi tubuh yang tidak realistis'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Individuals can protect themselves by verifying sources, being skeptical of unusual requests, and not trusting everything they see online, especially when it involves financial or personal information.',
+        tips: ['Always verify the source', 'Be skeptical of unusual requests', 'Use strong, unique passwords'],
+        category: 'protection'
     },
     {
         id: 7,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2016/11/14/19/27/people-1824107_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "face swapping" in the context of deepfakes?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Exchanging physical faces between people', value: 'a' },
+            { text: 'AI technique that replaces one person\'s face with another in media', value: 'b' },
+            { text: 'Makeup application technique', value: 'c' },
+            { text: 'Photo editing filter', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Latar belakang pada foto ini tampak koheren dan logis. Tidak ada distorsi atau artefak yang membuat latar belakang terlihat seperti lukisan.',
-        tips: ['Latar belakang yang logis dan jelas', 'Tidak ada elemen yang kabur atau aneh', 'Interaksi subjek dengan lingkungan yang realistis'],
-        source: 'Getty Images',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Face swapping is an AI technique that uses deep learning algorithms to replace one person\'s face with another in videos or images, creating realistic but fake content.',
+        tips: ['Uses neural networks for face mapping', 'Can be used for entertainment or deception', 'Quality depends on training data'],
+        category: 'techniques'
     },
     {
         id: 8,
-        type: 'media',
-        mediaType: 'video',
-        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-smiling-girl-1809-large.mp4',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What ethical concerns are associated with deepfake technology?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Only concerns about entertainment', value: 'a' },
+            { text: 'Privacy violations, fraud, and misinformation', value: 'b' },
+            { text: 'No ethical concerns at all', value: 'c' },
+            { text: 'Only concerns about cost', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Video ini menunjukkan interaksi yang natural antara subjek dan lingkungan. Gerakan dan bayangan yang dihasilkan sangat konsisten.',
-        tips: ['Gerakan subjek yang halus dan natural', 'Bayangan yang konsisten', 'Interaksi dengan objek lain yang logis'],
-        source: 'Public Domain',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Deepfake technology raises serious ethical concerns including privacy violations, potential for fraud, spread of misinformation, and non-consensual use of people\'s likenesses.',
+        tips: ['Protect personal data and images', 'Be aware of potential misuse', 'Support ethical AI development'],
+        category: 'ethics'
     },
     {
         id: 9,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2021/02/08/11/04/woman-5994270_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "voice cloning" in deepfake technology?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Recording someone\'s voice with a microphone', value: 'a' },
+            { text: 'AI synthesis of a person\'s voice to say anything', value: 'b' },
+            { text: 'Voice acting or impression', value: 'c' },
+            { text: 'Audio editing software', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Perhatikan bayangan pada wajah yang tidak sesuai dengan arah sumber cahaya utama. Ini adalah ketidakcocokan yang sering terjadi pada konten deepfake.',
-        tips: ['Arah bayangan yang tidak logis', 'Bayangan terlalu tajam atau terlalu halus', 'Adanya bayangan yang seharusnya tidak ada'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Voice cloning is AI technology that can synthesize a person\'s voice to make them say anything, using machine learning to copy speech patterns, tone, and characteristics.',
+        tips: ['Requires voice samples for training', 'Can be used for legitimate or malicious purposes', 'Quality depends on training data quality'],
+        category: 'audio'
     },
     {
         id: 10,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2022/10/25/11/48/ai-generated-7546059_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'How can deepfake technology be used positively?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Only for negative purposes', value: 'a' },
+            { text: 'Education, entertainment, and accessibility', value: 'b' },
+            { text: 'Military applications only', value: 'c' },
+            { text: 'No positive uses exist', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Gigi pada foto ini terlihat tidak beraturan, berdistorsi, atau memiliki bentuk aneh. Algoritma AI sering kesulitan mereplikasi detail kecil seperti gigi.',
-        tips: ['Gigi yang bentuknya tidak normal', 'Gigi yang terlalu putih atau transparan', 'Jumlah gigi yang aneh'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Deepfake technology can be used positively for education, entertainment, accessibility (helping those who lost their voice), movie special effects, and historical recreations.',
+        tips: ['Educational content creation', 'Accessibility tools for voice loss', 'Entertainment and creative applications'],
+        category: 'applications'
     },
+    // Media questions removed - replaced with text questions
     {
         id: 11,
-        type: 'media',
-        mediaType: 'video',
-        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-business-man-in-a-suit-walking-down-the-stairs-33512-large.mp4',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "digital watermarking" in the context of deepfake detection?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Adding visible logos to images', value: 'a' },
+            { text: 'Embedding hidden identifiers to verify authenticity', value: 'b' },
+            { text: 'Watermarking physical documents', value: 'c' },
+            { text: 'Adding copyright notices', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Video ini adalah cuplikan berita asli. Gerakan wajah, audio, dan pencahayaan sangat sinkron dan natural, tanpa adanya artefak digital.',
-        tips: ['Gerakan wajah yang mengalir', 'Sinkronisasi bibir dan suara yang akurat', 'Kualitas video yang konsisten'],
-        source: 'Public Domain',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Digital watermarking embeds hidden, imperceptible identifiers into digital content that can be used to verify its authenticity and detect if it has been tampered with or AI-generated.',
+        tips: ['Watermarks can be invisible to humans', 'They help verify content origin', 'Used in both images and videos'],
+        category: 'detection'
     },
     {
         id: 12,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2023/11/24/00/36/ai-generated-8399587_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "face morphing" in deepfake technology?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'A cosmetic surgery procedure', value: 'a' },
+            { text: 'AI technique that blends facial features from multiple people', value: 'b' },
+            { text: 'A photography lighting technique', value: 'c' },
+            { text: 'A makeup application method', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: "Terdapat distorsi atau 'glitch' di pinggir wajah, terutama di bagian rambut dan leher. Ini terjadi karena algoritma kesulitan 'menjahit' wajah palsu ke tubuh yang asli.",
-        tips: ['Garis pinggir wajah yang tidak jelas', 'Distorsi di sekitar rambut atau leher', 'Perbedaan warna yang aneh'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Face morphing is an AI technique that uses algorithms to blend facial features from multiple individuals, creating a new, synthetic face that combines characteristics from different sources.',
+        tips: ['Creates hybrid facial features', 'Used in identity theft and deception', 'Can be detected by analyzing facial proportions'],
+        category: 'techniques'
     },
     {
         id: 13,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2023/06/15/22/01/ai-generated-8065555_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "lip-sync manipulation" in deepfake videos?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'A video editing technique for music videos', value: 'a' },
+            { text: 'AI that makes a person\'s mouth movements match any audio', value: 'b' },
+            { text: 'A method for improving audio quality', value: 'c' },
+            { text: 'A type of voice recognition software', value: 'd' }
         ],
-        correctAnswer: 'deepfake',
-        explanation: 'Latar belakang pada gambar ini terlihat kabur dan memiliki pola-pola aneh yang tidak logis. Ini adalah tanda bahwa latar belakang juga dihasilkan oleh AI.',
-        tips: ['Pola yang tidak beraturan pada latar belakang', 'Distorsi pada objek yang jauh', 'Latar belakang terlihat seperti lukisan'],
-        source: 'AI Generated',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Lip-sync manipulation is a deepfake technique where AI algorithms analyze audio and generate corresponding mouth movements, making it appear as if someone is saying words they never actually spoke.',
+        tips: ['Look for unnatural mouth movements', 'Check if lip movements match speech patterns', 'Pay attention to timing and rhythm'],
+        category: 'techniques'
     },
     {
         id: 14,
-        type: 'media',
-        mediaType: 'video',
-        content: 'https://assets.mixkit.co/videos/preview/mixkit-a-woman-talking-on-the-phone-in-a-cafe-35496-large.mp4',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "neural rendering" in deepfake technology?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'A type of computer graphics hardware', value: 'a' },
+            { text: 'AI technique that generates realistic facial expressions', value: 'b' },
+            { text: 'A method for rendering 3D environments', value: 'c' },
+            { text: 'A video compression algorithm', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Kualitas video ini terlihat alami dengan pencahayaan yang konsisten dan gerakan tubuh yang mulus. Tidak ada tanda-tanda manipulasi digital.',
-        tips: ['Pergerakan yang halus dan natural', 'Pencahayaan yang konsisten', 'Tidak ada perubahan kualitas yang tiba-tiba'],
-        source: 'Public Domain',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Neural rendering uses AI to generate highly realistic facial expressions and movements by training on large datasets of human faces, enabling the creation of convincing deepfake videos.',
+        tips: ['Creates realistic facial animations', 'Uses deep learning to understand facial expressions', 'Can generate emotions that never occurred'],
+        category: 'technology'
     },
     {
         id: 15,
-        type: 'media',
-        mediaType: 'image',
-        content: 'https://cdn.pixabay.com/photo/2017/08/07/19/23/people-2607872_1280.jpg',
-        questionText: 'Is this content real or AI-generated?',
+        type: 'text',
+        questionText: 'What is "source identification" in deepfake detection?',
         answerOptions: [
-            { text: 'Real', value: 'real' },
-            { text: 'Deepfake', value: 'deepfake' }
+            { text: 'Finding the original creator of a video', value: 'a' },
+            { text: 'Detecting if content comes from AI generation tools', value: 'b' },
+            { text: 'Identifying the camera used to record a video', value: 'c' },
+            { text: 'Locating the server hosting the content', value: 'd' }
         ],
-        correctAnswer: 'real',
-        explanation: 'Gambar ini adalah asli karena memiliki ketidaksempurnaan yang alami seperti pori-pori kulit, kerutan halus, dan tekstur rambut yang realistis, yang sulit direplikasi oleh AI.',
-        tips: ['Adanya ketidaksempurnaan alami', 'Tekstur kulit yang realistis', 'Detail yang jelas pada rambut'],
-        source: 'Reuters',
-        date: '2025'
+        correctAnswer: 'b',
+        explanation: 'Source identification in deepfake detection involves analyzing digital content to determine if it was created by AI generation tools or if it originated from authentic sources like cameras or recording devices.',
+        tips: ['Looks for AI generation artifacts', 'Analyzes metadata and digital fingerprints', 'Helps verify content authenticity'],
+        category: 'detection'
     },
-    // New Questions added here
     {
         id: 16,
-        type: 'general',
-        questionText: 'Apa itu Machine Learning (ML)?',
+        type: 'text',
+        questionText: 'What is "facial landmark analysis" in deepfake detection?',
         answerOptions: [
-            { text: 'A. Kemampuan komputer untuk membuat keputusan sendiri', value: 'A' },
-            { text: 'B. Algoritma yang memungkinkan komputer belajar dari data', value: 'B' },
-            { text: 'C. Sub-bidang AI yang fokus pada robotika', value: 'C' },
-            { text: 'D. Proses menghasilkan gambar dan video palsu', value: 'D' }
+            { text: 'Mapping geographic locations in photos', value: 'a' },
+            { text: 'Analyzing key points on a face to detect manipulation', value: 'b' },
+            { text: 'Identifying famous landmarks in videos', value: 'c' },
+            { text: 'Creating facial recognition databases', value: 'd' }
         ],
-        correctAnswer: 'B',
-        explanation: 'Machine Learning adalah sub-bidang AI yang berfokus pada pengembangan algoritma yang dapat "belajar" dan meningkatkan kinerjanya seiring waktu dengan mengeksposnya pada data.'
+        correctAnswer: 'b',
+        explanation: 'Facial landmark analysis identifies key points on a face (like eyes, nose, mouth corners) and analyzes their movements and relationships to detect unnatural patterns that indicate AI manipulation.',
+        tips: ['Detects unnatural facial movements', 'Analyzes symmetry and proportions', 'Identifies inconsistent expressions'],
+        category: 'detection'
     },
     {
         id: 17,
-        type: 'general',
-        questionText: 'Teknologi AI apa yang digunakan oleh asisten virtual seperti Siri dan Google Assistant?',
+        type: 'text',
+        questionText: 'What is "temporal consistency analysis" in deepfake detection?',
         answerOptions: [
-            { text: 'A. Computer Vision', value: 'A' },
-            { text: 'B. Natural Language Processing (NLP)', value: 'B' },
-            { text: 'C. Expert Systems', value: 'C' },
-            { text: 'D. Reinforcement Learning', value: 'D' }
+            { text: 'Analyzing video timestamps', value: 'a' },
+            { text: 'Checking for consistency across video frames', value: 'b' },
+            { text: 'Measuring video duration', value: 'c' },
+            { text: 'Analyzing audio synchronization', value: 'd' }
         ],
-        correctAnswer: 'B',
-        explanation: 'Natural Language Processing (NLP) adalah cabang AI yang memungkinkan komputer untuk memahami, menginterpretasi, dan menghasilkan bahasa manusia.'
+        correctAnswer: 'b',
+        explanation: 'Temporal consistency analysis examines how elements in a video change over time, looking for inconsistencies between frames that might indicate AI manipulation, such as sudden changes in lighting or unnatural movements.',
+        tips: ['Detects frame-to-frame inconsistencies', 'Looks for unnatural motion patterns', 'Identifies lighting and shadow changes'],
+        category: 'detection'
     },
     {
         id: 18,
-        type: 'general',
-        questionText: 'Siapa yang dianggap sebagai "bapak" dari kecerdasan buatan?',
+        type: 'text',
+        questionText: 'What is "metadata analysis" in deepfake detection?',
         answerOptions: [
-            { text: 'A. Bill Gates', value: 'A' },
-            { text: 'B. Alan Turing', value: 'B' },
-            { text: 'C. John McCarthy', value: 'C' },
-            { text: 'D. Stephen Hawking', value: 'D' }
+            { text: 'Analyzing the content of videos and images', value: 'a' },
+            { text: 'Examining hidden data about file creation and editing', value: 'b' },
+            { text: 'Studying the behavior of people in videos', value: 'c' },
+            { text: 'Analyzing the emotional content of media', value: 'd' }
         ],
-        correctAnswer: 'C',
-        explanation: 'John McCarthy adalah seorang ilmuwan komputer Amerika yang menciptakan istilah "kecerdasan buatan" pada tahun 1956 dan merupakan salah satu pendiri bidang tersebut.'
+        correctAnswer: 'b',
+        explanation: 'Metadata analysis examines hidden information embedded in digital files, such as creation dates, editing software used, and compression artifacts, which can reveal if content has been artificially generated or manipulated.',
+        tips: ['Reveals editing software痕迹', 'Shows creation and modification history', 'Can detect AI generation tools'],
+        category: 'detection'
     },
+    // New Questions added here
     {
         id: 19,
-        type: 'general',
-        questionText: 'Apa perbedaan utama antara AI Kuat (Strong AI) dan AI Lemah (Weak AI)?',
+        type: 'text',
+        questionText: 'What is Machine Learning (ML)?',
         answerOptions: [
-            { text: 'A. AI Kuat memiliki kesadaran, AI Lemah tidak', value: 'A' },
-            { text: 'B. AI Kuat hanya bisa memecahkan satu masalah, AI Lemah banyak masalah', value: 'B' },
-            { text: 'C. AI Kuat menggunakan internet, AI Lemah tidak', value: 'C' },
-            { text: 'D. AI Kuat lebih cepat, AI Lemah lebih lambat', value: 'D' }
+            { text: 'The ability of computers to make independent decisions', value: 'a' },
+            { text: 'Algorithms that enable computers to learn from data', value: 'b' },
+            { text: 'A subfield of AI focused on robotics', value: 'c' },
+            { text: 'The process of generating fake images and videos', value: 'd' }
         ],
-        correctAnswer: 'A',
-        explanation: 'AI Kuat (juga dikenal sebagai AGI atau Artificial General Intelligence) adalah AI teoretis yang memiliki kesadaran dan kemampuan kognitif layaknya manusia, sedangkan AI Lemah (ANI) adalah AI yang dirancang untuk satu tugas spesifik.'
+        correctAnswer: 'b',
+        explanation: 'Machine Learning is a subfield of AI that focuses on developing algorithms that can "learn" and improve their performance over time by being exposed to data.',
+        tips: ['Computers learn patterns from data', 'Used in deepfake creation and detection', 'Foundation of modern AI systems'],
+        category: 'technology'
     },
     {
         id: 20,
-        type: 'general',
-        questionText: 'Apa nama jaringan saraf tiruan yang meniru cara kerja otak manusia?',
+        type: 'text',
+        questionText: 'What AI technology is used by virtual assistants like Siri and Google Assistant?',
         answerOptions: [
-            { text: 'A. Neural Networks', value: 'A' },
-            { text: 'B. Data Mining', value: 'B' },
-            { text: 'C. Cloud Computing', value: 'C' },
-            { text: 'D. Quantum Computing', value: 'D' }
+            { text: 'Computer Vision', value: 'a' },
+            { text: 'Natural Language Processing (NLP)', value: 'b' },
+            { text: 'Expert Systems', value: 'c' },
+            { text: 'Reinforcement Learning', value: 'd' }
         ],
-        correctAnswer: 'A',
-        explanation: 'Neural Networks (Jaringan Saraf Tiruan) adalah model komputasi yang terinspirasi oleh struktur otak manusia, digunakan untuk mengenali pola dan memecahkan masalah kompleks.'
+        correctAnswer: 'b',
+        explanation: 'Natural Language Processing (NLP) is a branch of AI that enables computers to understand, interpret, and generate human language.',
+        tips: ['Used in voice assistants and chatbots', 'Enables text analysis and translation', 'Key technology for voice deepfakes'],
+        category: 'technology'
     },
     {
         id: 21,
-        type: 'general',
-        questionText: 'Dalam Deep Learning, apa kepanjangan dari CNN?',
+        type: 'text',
+        questionText: 'Who is considered the "father" of artificial intelligence?',
         answerOptions: [
-            { text: 'A. Creative Neural Network', value: 'A' },
-            { text: 'B. Convolutional Neural Network', value: 'B' },
-            { text: 'C. Computerized Network Node', value: 'C' },
-            { text: 'D. Comprehensive Neural Navigation', value: 'D' }
+            { text: 'Bill Gates', value: 'a' },
+            { text: 'Alan Turing', value: 'b' },
+            { text: 'John McCarthy', value: 'c' },
+            { text: 'Stephen Hawking', value: 'd' }
         ],
-        correctAnswer: 'B',
-        explanation: 'Convolutional Neural Network (CNN) adalah jenis Neural Network yang sangat efektif untuk tugas-tugas yang berkaitan dengan penglihatan komputer (Computer Vision), seperti pengenalan gambar.'
+        correctAnswer: 'c',
+        explanation: 'John McCarthy was an American computer scientist who coined the term "artificial intelligence" in 1956 and was one of the founders of the field.',
+        tips: ['Coined the term "artificial intelligence"', 'Organized the Dartmouth Conference in 1956', 'Pioneer in AI research'],
+        category: 'history'
     },
     {
         id: 22,
-        type: 'general',
-        questionText: 'Apa tujuan utama dari algoritma Reinforcement Learning?',
+        type: 'text',
+        questionText: 'What is the main difference between Strong AI and Weak AI?',
         answerOptions: [
-            { text: 'A. Mengklasifikasikan data', value: 'A' },
-            { text: 'B. Memprediksi hasil di masa depan', value: 'B' },
-            { text: 'C. Mencari jalur terpendek', value: 'C' },
-            { text: 'D. Belajar dari interaksi dengan lingkungan melalui reward dan penalty', value: 'D' }
+            { text: 'Strong AI has consciousness, Weak AI does not', value: 'a' },
+            { text: 'Strong AI can only solve one problem, Weak AI can solve many', value: 'b' },
+            { text: 'Strong AI uses the internet, Weak AI does not', value: 'c' },
+            { text: 'Strong AI is faster, Weak AI is slower', value: 'd' }
         ],
-        correctAnswer: 'D',
-        explanation: 'Reinforcement Learning adalah cabang AI di mana sebuah agen belajar untuk membuat keputusan yang optimal dengan berinteraksi dengan lingkungannya dan menerima umpan balik berupa reward atau penalty.'
+        correctAnswer: 'a',
+        explanation: 'Strong AI (also known as AGI or Artificial General Intelligence) is theoretical AI with consciousness and human-like cognitive abilities, while Weak AI (ANI) is AI designed for specific tasks.',
+        tips: ['AGI remains theoretical and not yet achieved', 'Current AI systems are all Weak AI', 'Deepfake technology uses Weak AI'],
+        category: 'concepts'
     },
     {
         id: 23,
-        type: 'general',
-        questionText: 'Apa yang dimaksud dengan Big Data dalam konteks AI?',
+        type: 'text',
+        questionText: 'What is the name of the artificial neural network that mimics how the human brain works?',
         answerOptions: [
-            { text: 'A. Basis data yang sangat besar', value: 'A' },
-            { text: 'B. Data yang kompleks dan bervolume tinggi yang sulit diproses oleh perangkat lunak tradisional', value: 'B' },
-            { text: 'C. Data yang digunakan untuk melatih model AI', value: 'C' },
-            { text: 'D. Kumpulan data pribadi', value: 'D' }
+            { text: 'Neural Networks', value: 'a' },
+            { text: 'Data Mining', value: 'b' },
+            { text: 'Cloud Computing', value: 'c' },
+            { text: 'Quantum Computing', value: 'd' }
         ],
-        correctAnswer: 'B',
-        explanation: 'Big Data mengacu pada volume data yang sangat besar dan kompleks yang tidak dapat dikelola atau diproses secara efektif menggunakan alat pemrosesan data tradisional.'
+        correctAnswer: 'a',
+        explanation: 'Neural Networks are computational models inspired by the structure of the human brain, used to recognize patterns and solve complex problems.',
+        tips: ['Consist of interconnected nodes (neurons)', 'Learn from training data', 'Foundation of deepfake technology'],
+        category: 'technology'
     },
     {
         id: 24,
-        type: 'general',
-        questionText: 'Contoh nyata dari "Computer Vision" adalah...',
+        type: 'text',
+        questionText: 'In Deep Learning, what does CNN stand for?',
         answerOptions: [
-            { text: 'A. Deteksi spam di email', value: 'A' },
-            { text: 'B. Rekomendasi film di Netflix', value: 'B' },
-            { text: 'C. Pengenalan wajah di smartphone', value: 'C' },
-            { text: 'D. Asisten suara di mobil', value: 'D' }
+            { text: 'Creative Neural Network', value: 'a' },
+            { text: 'Convolutional Neural Network', value: 'b' },
+            { text: 'Computerized Network Node', value: 'c' },
+            { text: 'Comprehensive Neural Navigation', value: 'd' }
         ],
-        correctAnswer: 'C',
-        explanation: 'Computer Vision adalah bidang AI yang memungkinkan komputer untuk "melihat" dan menginterpretasikan informasi visual dari gambar dan video, seperti pengenalan wajah.'
+        correctAnswer: 'b',
+        explanation: 'Convolutional Neural Network (CNN) is a type of Neural Network that is very effective for tasks related to computer vision, such as image recognition.',
+        tips: ['Specialized for processing grid-like data', 'Used in image and video analysis', 'Key technology for visual deepfake detection'],
+        category: 'technology'
     },
     {
         id: 25,
-        type: 'general',
-        questionText: 'Teknologi apa yang memungkinkan model AI seperti ChatGPT untuk menghasilkan teks yang koheren?',
+        type: 'text',
+        questionText: 'What is the main goal of Reinforcement Learning algorithms?',
         answerOptions: [
-            { text: 'A. Generative Adversarial Networks (GANs)', value: 'A' },
-            { text: 'B. Natural Language Understanding (NLU)', value: 'B' },
-            { text: 'C. Large Language Models (LLMs)', value: 'C' },
-            { text: 'D. Computer Vision', value: 'D' }
+            { text: 'To classify data', value: 'a' },
+            { text: 'To predict future outcomes', value: 'b' },
+            { text: 'To find the shortest path', value: 'c' },
+            { text: 'To learn from interaction with environment through rewards and penalties', value: 'd' }
         ],
-        correctAnswer: 'C',
-        explanation: 'Large Language Models (LLMs) adalah model AI canggih yang dilatih dengan data teks dalam jumlah besar untuk memahami dan menghasilkan bahasa manusia.'
+        correctAnswer: 'd',
+        explanation: 'Reinforcement Learning is a branch of AI where an agent learns to make optimal decisions by interacting with its environment and receiving feedback in the form of rewards or penalties.',
+        tips: ['Uses trial and error learning', 'Agents improve through experience', 'Applied in game AI and robotics'],
+        category: 'technology'
+    },
+    {
+        id: 26,
+        type: 'text',
+        questionText: 'What is meant by Big Data in the context of AI?',
+        answerOptions: [
+            { text: 'A very large database', value: 'a' },
+            { text: 'Complex and high-volume data that is difficult to process with traditional software', value: 'b' },
+            { text: 'Data used to train AI models', value: 'c' },
+            { text: 'A collection of personal data', value: 'd' }
+        ],
+        correctAnswer: 'b',
+        explanation: 'Big Data refers to extremely large and complex data sets that cannot be effectively managed or processed using traditional data processing tools.',
+        tips: ['Characterized by volume, velocity, and variety', 'Essential for training deep learning models', 'Used in deepfake detection and analysis'],
+        category: 'concepts'
+    },
+    {
+        id: 27,
+        type: 'text',
+        questionText: 'A real-world example of "Computer Vision" is...',
+        answerOptions: [
+            { text: 'Spam detection in email', value: 'a' },
+            { text: 'Movie recommendations on Netflix', value: 'b' },
+            { text: 'Face recognition on smartphones', value: 'c' },
+            { text: 'Voice assistants in cars', value: 'd' }
+        ],
+        correctAnswer: 'c',
+        explanation: 'Computer Vision is a field of AI that enables computers to "see" and interpret visual information from images and videos. Face recognition is one of the most common applications of Computer Vision.',
+        tips: ['Used in autonomous vehicles', 'Enables medical image analysis', 'Key for visual deepfake detection'],
+        category: 'applications'
     }
 ];
 
-let quizData;
-const totalQuizQuestions = 10;
-
-// Quiz State
+// Quiz Variables
+let quizData = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = [];
@@ -391,7 +453,7 @@ const reviewScreen = document.getElementById('reviewScreen');
 const screens = document.querySelectorAll('.quiz-screen');
 
 const startQuizBtn = document.getElementById('startQuiz');
-const answerButtonsContainer = document.querySelector('.answer-buttons-container');
+const answerButtonsContainer = document.getElementById('answerButtonsContainer');
 const skipQuestionBtn = document.getElementById('skipQuestion');
 const nextQuestionBtn = document.getElementById('nextQuestion');
 const retakeQuizBtn = document.getElementById('retakeQuizBtn'); // Updated ID
@@ -432,7 +494,6 @@ const ratingStarsEl = document.querySelector('.rating-stars');
 // Review Elements
 const reviewContainer = document.getElementById('reviewContainer');
 
-// Helper Functions
 function showScreen(screenToShow) {
     screens.forEach(screen => {
         screen.classList.remove('active');
@@ -440,9 +501,9 @@ function showScreen(screenToShow) {
     screenToShow.classList.add('active');
 }
 
-function getRandomQuestions(arr, num) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num);
+function getRandomQuestions() {
+    const shuffled = [...fullQuizData].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 15);
 }
 
 function updateStats() {
@@ -456,7 +517,9 @@ function updateProgress() {
 
 // Main Quiz Functions
 function initQuiz() {
-    quizData = getRandomQuestions(fullQuizData, totalQuizQuestions);
+    quizData = getRandomQuestions();
+    // Randomize answer options for each question
+    quizData = quizData.map(question => randomizeAnswerOptions(question));
     totalQuestionsEl.textContent = quizData.length;
     currentQuestionIndex = 0;
     score = 0;
@@ -488,6 +551,14 @@ function loadQuestion() {
         contentDate.textContent = `Date: ${question.date}`;
         if (question.mediaType === 'image') {
             contentImage.src = question.content;
+            contentImage.onerror = function() {
+                console.error('Failed to load image:', question.content);
+                // Fallback to local image or placeholder
+                this.src = 'assets/images/ai-generated-sticker-anime-girl-with-pink-and-blue-hair-png.webp';
+            };
+            contentImage.onload = function() {
+                console.log('Image loaded successfully:', question.content);
+            };
             contentImage.classList.remove('hidden');
         } else {
             contentVideo.src = question.content;
@@ -617,21 +688,23 @@ function showResults() {
     let ratingText = '';
     let stars = 0;
     
-    if (correctAnswers >= 9) {
+    // Ranges:
+    // 1-3 => 1 star, 4-6 => 2 stars, 7-9 => 3 stars, 10-12 => 4 stars, 13-15 => 5 stars
+    if (correctAnswers >= 13) {
         ratingText = 'Expert Level';
         stars = 5;
-    } else if (correctAnswers >= 7) {
+    } else if (correctAnswers >= 10) {
         ratingText = 'Advanced Level';
         stars = 4;
-    } else if (correctAnswers >= 5) {
+    } else if (correctAnswers >= 7) {
         ratingText = 'Intermediate Level';
         stars = 3;
-    } else if (correctAnswers >= 3) {
+    } else if (correctAnswers >= 4) {
         ratingText = 'Beginner Level';
         stars = 2;
     } else {
         ratingText = 'Needs Practice';
-        stars = 1;
+        stars = 1; // 0-3
     }
     
     ratingTextEl.textContent = ratingText;
@@ -694,16 +767,17 @@ viewAnswersBtn.addEventListener('click', viewAnswers);
 backToResultsBtn.addEventListener('click', () => showScreen(resultsScreen));
 
 // Initialize quiz when page loads
-document.addEventListener('DOMContentLoaded', initQuiz);
+document.addEventListener('DOMContentLoaded', () => {
+    initQuiz();
+});
 
 // Add keyboard navigation
 document.addEventListener('keydown', (e) => {
     const activeScreen = document.querySelector('.quiz-screen.active');
     
     if (activeScreen.id === 'questionScreen') {
-        const keyMap = { 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D' };
-        if (keyMap[e.key]) {
-            selectAnswer(keyMap[e.key]);
+        if (['a', 'b', 'c', 'd'].includes(e.key)) {
+            selectAnswer(e.key);
         } else if (e.key === 's') {
             e.preventDefault();
             skipQuestion();

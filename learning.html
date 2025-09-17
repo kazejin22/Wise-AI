@@ -24,7 +24,6 @@
                 <li><a href="map.html" class="nav-link">Case Map</a></li>
                 <li><a href="deepware-api.html" class="nav-link">Detection Test</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -57,9 +56,9 @@
                     <i class="fas fa-th"></i>
                     All Topics
                 </button>
-                <button class="filter-btn" data-category="deepfake">
-                    <i class="fas fa-eye"></i>
-                    Deepfake Detection
+                <button class="filter-btn" data-category="basics">
+                    <i class="fas fa-lightbulb"></i>
+                    AI Basics
                 </button>
                 <button class="filter-btn" data-category="ethics">
                     <i class="fas fa-balance-scale"></i>
@@ -69,10 +68,6 @@
                     <i class="fas fa-shield-alt"></i>
                     Cybercrime
                 </button>
-                <button class="filter-btn" data-category="law">
-                    <i class="fas fa-gavel"></i>
-                    AI in Law
-                </button>
             </div>
         </div>
     </section>
@@ -80,13 +75,15 @@
     <!-- Learning Content -->
     <section class="learning-content">
         <div class="container">
-            <!-- Featured Video -->
-            <div class="featured-video">
-                <h2>Featured Content</h2>
-                <div class="featured-card">
+            
+
+            <!-- Video Grid -->
+            <div class="video-grid" id="videoGrid">
+                <!-- Static Featured-Style Cards -->
+                <div class="featured-card" data-category="ethics">
                     <div class="video-container">
                         <iframe 
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            src="https://www.youtube.com/embed/ch-CU5VG1fs" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -94,132 +91,99 @@
                     </div>
                     <div class="video-info">
                         <div class="video-meta">
-                            <span class="category deepfake">Deepfake Detection</span>
-                            <span class="duration"><i class="fas fa-clock"></i> 15 min</span>
+                            <span class="category ethics">AI Ethics</span>
+                            <span class="duration"><i class="fas fa-clock"></i>1:50 min</span>
                             <span class="level"><i class="fas fa-star"></i> Beginner</span>
                         </div>
-                        <h3>How to Spot Deepfakes: A Complete Guide</h3>
-                        <p>Learn the fundamental techniques used by experts to identify AI-generated content in videos and images. This comprehensive guide covers everything from facial analysis to audio detection.</p>
-                        <div class="video-stats">
-                            <span><i class="fas fa-eye"></i> 45K views</span>
-                            <span><i class="fas fa-thumbs-up"></i> 2.3K likes</span>
-                            <span><i class="fas fa-calendar"></i> 2 weeks ago</span>
+                        <h3>AI vs HUMAN Works</h3>
+                        <p>A thoughtful comparison between AI-generated creations and human-made works. This video explores strengths, limitations, and typical workflows on both sides, ethical considerations around authorship and attribution, and how hybrid collaboration can elevate quality and productivity across design, writing, and multimedia projects.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card" data-category="basics">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/02rVRwovRow" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <span class="category basics">AI Basics</span>
+                            <span class="duration"><i class="fas fa-clock"></i>1:20 min</span>
+                            <span class="level"><i class="fas fa-star"></i> Intermediate</span>
                         </div>
+                        <h3>The Type of AI</h3>
+                        <p>A clear walkthrough of the main types of AI—from reactive machines and limited-memory systems to theory-of-mind and beyond—along with practical categories such as narrow (ANI), general (AGI), and superintelligence. Learn the real-world examples, capabilities, and trade-offs for each approach.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card" data-category="basics">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/s8IGWdkxM9E" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <span class="category basics">AI Basics</span>
+                            <span class="duration"><i class="fas fa-clock"></i> 1:10 min</span>
+                            <span class="level"><i class="fas fa-star"></i> Advanced</span>
+                        </div>
+                        <h3>What is AI?</h3>
+                        <p>An accessible introduction to artificial intelligence: what it is, how machines learn (rules, machine learning, deep learning), where AI appears in daily life, and the fundamentals of models, data, training, and inference—demystified with clear analogies and examples.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card" data-category="ethics">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/79TfV2v6Jv8" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <span class="category basics">AI Basics</span>
+                            <span class="duration"><i class="fas fa-clock"></i>2:07 min</span>
+                            <span class="level"><i class="fas fa-star"></i> Beginner</span>
+                        </div>
+                        <h3>
+                            Strengths & Weaknesses of AI</h3>
+                        <p>A clear overview of where AI performs best (pattern recognition, scale, and speed) versus where it struggles (context, nuance, bias, and reasoning). Learn common pitfalls, how dataset quality affects outcomes, and when human oversight is essential.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card" data-category="ethics">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/oQ6GRA-6pIk" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <span class="category ethics">AI Ethics</span>
+                            <span class="duration"><i class="fas fa-clock"></i>2:07 min</span>
+                            <span class="level"><i class="fas fa-star"></i> Intermediate</span>
+                        </div>
+                        <h3>
+                            How to Use AI Properly</h3>
+                        <p>Practical best practices for safe and effective AI use: writing clear prompts, verifying outputs, protecting privacy, citing sources, and avoiding misuse. Includes tips for setting boundaries, reducing hallucinations, and collaborating responsibly with AI tools.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Video Grid -->
-            <div class="video-grid" id="videoGrid">
-                <!-- Video cards will be populated by JavaScript -->
-            </div>
-
-            <!-- Load More Button -->
-            <div class="load-more-container">
-                <button id="loadMoreBtn" class="btn btn-secondary">
-                    <i class="fas fa-plus"></i>
-                    Load More Videos
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Learning Paths -->
-    <section class="learning-paths">
-        <div class="container">
-            <h2 class="section-title">Learning Paths</h2>
-            <p class="section-subtitle">Follow structured learning paths to master AI detection</p>
             
-            <div class="paths-grid">
-                <div class="path-card">
-                    <div class="path-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Beginner Path</h3>
-                    <p>Start your journey with fundamental concepts and basic detection techniques.</p>
-                    <div class="path-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">0/8 completed</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">Start Learning</a>
-                </div>
-
-                <div class="path-card">
-                    <div class="path-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3>Intermediate Path</h3>
-                    <p>Advance your skills with advanced detection methods and real-world case studies.</p>
-                    <div class="path-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 25%"></div>
-                        </div>
-                        <span class="progress-text">2/8 completed</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">Continue Learning</a>
-                </div>
-
-                <div class="path-card">
-                    <div class="path-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Expert Path</h3>
-                    <p>Master advanced techniques and become an AI detection specialist.</p>
-                    <div class="path-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">0/10 completed</span>
-                    </div>
-                    <a href="#" class="btn btn-primary">Start Expert Path</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section class="resources">
-        <div class="container">
-            <h2 class="section-title">Additional Resources</h2>
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Research Papers</h3>
-                    <p>Access the latest academic research on AI detection and deepfake technology.</p>
-                    <a href="#" class="resource-link">Browse Papers <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Detection Tools</h3>
-                    <p>Explore various tools and software used by professionals for AI detection.</p>
-                    <a href="#" class="resource-link">View Tools <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Forum</h3>
-                    <p>Connect with other learners and experts in our community discussion forum.</p>
-                    <a href="#" class="resource-link">Join Forum <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Certification</h3>
-                    <p>Earn certificates to validate your AI detection skills and knowledge.</p>
-                    <a href="#" class="resource-link">Get Certified <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -233,12 +197,6 @@
                         <span>Web Wise AI</span>
                     </div>
                     <p>Empowering individuals with AI literacy and detection skills for a safer digital future.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -253,7 +211,6 @@
                     <h3>Resources</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
@@ -274,6 +231,55 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/learning.js"></script>
+    <script>
+    // Simple filter for static cards
+    (function() {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const grid = document.getElementById('videoGrid');
+        const cards = grid.querySelectorAll('.featured-card');
+        let noResultEl = null;
+
+        function ensureNoResultEl() {
+            if (!noResultEl) {
+                noResultEl = document.createElement('div');
+                noResultEl.className = 'no-results';
+                noResultEl.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    <h3>No videos found</h3>
+                    <p>Try selecting a different category.</p>
+                `;
+            }
+            return noResultEl;
+        }
+
+        function applyFilter(category) {
+            let visible = 0;
+            cards.forEach(card => {
+                const match = category === 'all' || (card.dataset.category || '').toLowerCase() === category;
+                card.style.display = match ? '' : 'none'; // preserve original layout
+                if (match) visible++;
+            });
+
+            // Show/hide no results
+            if (visible === 0) {
+                grid.appendChild(ensureNoResultEl());
+            } else if (noResultEl && noResultEl.parentElement) {
+                noResultEl.parentElement.removeChild(noResultEl);
+            }
+
+            // Scroll into view
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilter(btn.dataset.category);
+            });
+        });
+        // initial
+        applyFilter('all');
+    })();
+    </script>
 </body>
 </html> 
