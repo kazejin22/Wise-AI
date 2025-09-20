@@ -403,17 +403,50 @@ const recommendationsList = document.getElementById('recommendationsList');
 
 // Initialize the page
 function initDeepware() {
+    // Check if all required DOM elements exist
+    console.log('DOM Elements Check:');
+    console.log('uploadArea:', uploadArea);
+    console.log('fileInput:', fileInput);
+    console.log('browseBtn:', browseBtn);
+    console.log('fileInfo:', fileInfo);
+    
+    if (!uploadArea || !fileInput || !browseBtn || !fileInfo) {
+        console.error('Some required DOM elements are missing!');
+        return;
+    }
+    
     setupEventListeners();
     updateStats();
+    
+    // Log current test count on page load
+    const currentCount = getTestCount();
+    console.log(`Deepware initialized. Current test count: ${currentCount}`);
+    
+    // Add double-click to reset counter (for development/testing purposes)
+    const totalTestsElement = document.getElementById('totalTests');
+    if (totalTestsElement) {
+        totalTestsElement.addEventListener('dblclick', () => {
+            if (confirm('Reset test counter to 0? This action cannot be undone.')) {
+                resetTestCount();
+                updateTestCounter();
+                console.log('Test counter has been reset to 0');
+            }
+        });
+        
+        // Add tooltip
+        totalTestsElement.title = 'Double-click to reset counter';
+        totalTestsElement.style.cursor = 'pointer';
+    }
 }
 
 // Setup event listeners
 function setupEventListeners() {
     // File input
     fileInput.addEventListener('change', handleFileSelect);
-    // Clear the input value before opening the picker so selecting the same file triggers 'change'
-    browseBtn.addEventListener('click', () => {
-        fileInput.value = '';
+    
+    // Browse button click handler
+    browseBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event bubbling to uploadArea
         fileInput.click();
     });
     
@@ -421,9 +454,13 @@ function setupEventListeners() {
     uploadArea.addEventListener('dragover', handleDragOver);
     uploadArea.addEventListener('dragleave', handleDragLeave);
     uploadArea.addEventListener('drop', handleDrop);
-    // Also handle clicks on the upload area similarly
-    uploadArea.addEventListener('click', () => {
-        fileInput.value = '';
+    
+    // Upload area click handler - but exclude clicks on the browse button
+    uploadArea.addEventListener('click', (e) => {
+        // Don't trigger if the click was on the browse button or its children
+        if (e.target === browseBtn || browseBtn.contains(e.target)) {
+            return;
+        }
         fileInput.click();
     });
     
@@ -439,9 +476,13 @@ function setupEventListeners() {
 
 // Handle file selection
 function handleFileSelect(event) {
+    console.log('File selection triggered');
     const file = event.target.files[0];
+    console.log('Selected file:', file);
     if (file) {
         processFile(file);
+    } else {
+        console.log('No file selected');
     }
 }
 
@@ -470,12 +511,15 @@ function handleDrop(event) {
 
 // Process selected file
 function processFile(file) {
+    console.log('Processing file:', file.name, file.type, file.size);
+    
     // Validate file type
     const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     const validVideoTypes = ['video/mp4', 'video/mov', 'video/avi', 'video/webm'];
     const validAudioTypes = ['audio/mp3', 'audio/wav', 'audio/m4a', 'audio/aac'];
     
     if (!validImageTypes.includes(file.type) && !validVideoTypes.includes(file.type) && !validAudioTypes.includes(file.type)) {
+        console.log('Invalid file type:', file.type);
         alert('Please select a valid image, video, or audio file.');
         return;
     }
@@ -483,10 +527,12 @@ function processFile(file) {
     // Validate file size (100MB limit)
     const maxSize = 100 * 1024 * 1024; // 100MB
     if (file.size > maxSize) {
+        console.log('File too large:', file.size);
         alert('File size must be less than 100MB.');
         return;
     }
     
+    console.log('File validation passed, setting currentFile and displaying info');
     currentFile = file;
     displayFileInfo(file);
 }
@@ -627,6 +673,20 @@ function startProgressAnimation() {
 
 // Show results
 function showResults(results) {
+    // Increment test counter when showing results
+    const newCount = incrementTestCount();
+    updateTestCounter();
+    
+    // Save test history if results are valid
+    if (results && !results.error) {
+        saveTestHistory(results);
+    }
+    
+    // Log statistics
+    const stats = getTestStatistics();
+    console.log(`Test completed! Total tests performed: ${newCount}`);
+    console.log('Test statistics:', stats);
+    
     analysisSection.style.display = 'none';
     resultsSection.style.display = 'block';
     
@@ -1061,11 +1121,95 @@ function shareResults() {
     }
 }
 
-// Update stats (mock data)
+// Counter management functions
+function getTestCount() {
+    return parseInt(localStorage.getItem('deepware_test_count') || '147');
+}
+
+function incrementTestCount() {
+    const currentCount = getTestCount();
+    const newCount = currentCount + 1;
+    localStorage.setItem('deepware_test_count', newCount.toString());
+    return newCount;
+}
+
+function resetTestCount() {
+    localStorage.setItem('deepware_test_count', '0');
+    localStorage.removeItem('deepware_test_history'); // Also clear history
+    return 0;
+}
+
+// Save test history
+function saveTestHistory(results) {
+    try {
+        const history = JSON.parse(localStorage.getItem('deepware_test_history') || '[]');
+        const testRecord = {
+            timestamp: new Date().toISOString(),
+            fileName: currentFile ? currentFile.name : 'unknown',
+            fileType: currentFile ? currentFile.type : 'unknown',
+            fileSize: currentFile ? currentFile.size : 0,
+            conclusion: results.conclusion || 'UNKNOWN',
+            authenticityScore: results.authenticityScore || 0,
+            manipulationRisk: results.manipulationRisk || 'Unknown',
+            confidenceLevel: results.confidenceLevel || 'Unknown'
+        };
+        
+        history.push(testRecord);
+        
+        // Keep only last 100 tests to prevent localStorage from getting too large
+        if (history.length > 100) {
+            history.splice(0, history.length - 100);
+        }
+        
+        localStorage.setItem('deepware_test_history', JSON.stringify(history));
+        console.log('Test history saved:', testRecord);
+    } catch (error) {
+        console.error('Error saving test history:', error);
+    }
+}
+
+// Get test statistics
+function getTestStatistics() {
+    try {
+        const history = JSON.parse(localStorage.getItem('deepware_test_history') || '[]');
+        const totalTests = history.length;
+        
+        if (totalTests === 0) {
+            return {
+                totalTests: 0,
+                realCount: 0,
+                fakeCount: 0,
+                aiGeneratedCount: 0,
+                averageScore: 0
+            };
+        }
+        
+        const realCount = history.filter(test => test.conclusion === 'REAL').length;
+        const fakeCount = history.filter(test => test.conclusion === 'DEEPFAKE').length;
+        const aiGeneratedCount = history.filter(test => test.conclusion === 'AI-GENERATED').length;
+        const averageScore = history.reduce((sum, test) => sum + test.authenticityScore, 0) / totalTests;
+        
+        return {
+            totalTests,
+            realCount,
+            fakeCount,
+            aiGeneratedCount,
+            averageScore: Math.round(averageScore * 10) / 10
+        };
+    } catch (error) {
+        console.error('Error getting test statistics:', error);
+        return { totalTests: 0, realCount: 0, fakeCount: 0, aiGeneratedCount: 0, averageScore: 0 };
+    }
+}
+
+// Update stats with dynamic test counter
 function updateStats() {
+    // Get current test count from localStorage
+    const currentTestCount = getTestCount();
+    
     // Animate stats on page load
     const stats = [
-        { element: document.getElementById('totalTests'), target: 375, suffix: '' },
+        { element: document.getElementById('totalTests'), target: currentTestCount, suffix: '' },
         { element: document.getElementById('accuracy'), target: 89.7, suffix: '%' },
         { element: document.getElementById('avgTime'), target: 118.4, suffix: 's' }
     ];
@@ -1073,6 +1217,15 @@ function updateStats() {
     stats.forEach(stat => {
         animateCounter(stat.element, stat.target, stat.suffix);
     });
+}
+
+// Update test counter in real-time
+function updateTestCounter() {
+    const totalTestsElement = document.getElementById('totalTests');
+    const currentCount = getTestCount();
+    if (totalTestsElement) {
+        totalTestsElement.textContent = currentCount;
+    }
 }
 
 // Animate counter
