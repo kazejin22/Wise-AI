@@ -1,4 +1,4 @@
-# Web Wise AI - Deepfake Detection System
+# WISE AI - Deepfake Detection System
 
 Sistem deteksi deepfake yang menggunakan API Hugging Face untuk menganalisis gambar, video, dan audio yang di-generate oleh AI.
 

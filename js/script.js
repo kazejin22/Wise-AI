@@ -239,4 +239,4 @@ document.querySelectorAll('.social-links a').forEach(link => {
     });
 });
 
-console.log('Web Wise AI - JavaScript loaded successfully!'); 
+console.log('WISE AI - JavaScript loaded successfully!');
